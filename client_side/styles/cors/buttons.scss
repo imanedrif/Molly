@@ -1,0 +1,34 @@
+.Primary{
+    padding: 0.5rem 2rem;
+    color: white;
+    border-radius: 30px;
+    background-color: #297373;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.OutlineIcon{
+    padding: 0.5rem 1.5rem;
+    color: white;
+    border-radius: 30px;
+    border: 1.5px solid;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #297373;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.Secondary{
+    background-color:$C2;
+    font-size: 1rem;
+    color:white;
+    border-radius:20px;
+    padding:0.7rem 2rem;
+    border:none;
+    outline:none;
+}

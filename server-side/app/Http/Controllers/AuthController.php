@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -31,28 +32,27 @@ class AuthController extends Controller
         $user = new User();
         $user->name = $input['name'];
         $user->email = $input['email'];
-        $user->password = $input['password'];
+        $user->password = bcrypt($input['password']);
         $user->phoneNumber = $input['phoneNumber'];
         $user->save();
-
         $token = $user->createToken('auth_token',['user'])->plainTextToken;
         return response()->json(['user'=>$user ,'Auth_token'=>$token], 200);
     }
 
-    Public function Login(Request $request){
-
-        $input = $request->all();
-        $validation = Validator::make($input,[
-            'email'=>'required|email',
-            'password'=>'required|min:8',
+    public function Login(Request $request)
+    {
+        $input = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
         ]);
 
-        if($validation->fails()){
-            return response()->json(['error'=>$validation], 401);
+        if (Auth::attempt($input)) {
+            $user = User::where('email', $input['email'])->first();
+            $token = $user->createToken('auth_token', ['user'])->plainTextToken;
+            return response()->json(['user' => $user, 'auth_token' => $token], 200);
         }
-        $user = User::where('email', $input['email'])->first();
-        $token = $user->createToken('auth_token',['user'])->plainTextToken;
-        return response()->json(['user'=>$user , 'Auth_token'=>$token], 200);
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
     Public function Logout(Request $request){

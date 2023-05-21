@@ -1,0 +1,92 @@
+.Hero{
+    position: relative;
+    padding: 0 3% 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 85vh;
+    overflow:hidden;
+
+    .left-side{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+
+    .title{
+        font-size: 3rem;
+        font-weight: 700;
+        color: #006969;
+    }
+    .Shape2{
+        background-color: #FF8552;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        z-index: -1;
+        position: absolute;
+        left: 2.4%;
+        transform: rotate(25deg);
+        top: 20%;
+    }
+    .shape5{
+        background: #FF8552;
+        opacity: 0.4;
+        width: 30rem;
+        height: 20rem;
+        border-radius: 99px;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 98%;
+        z-index: -1;
+    }
+    .desription-1{
+        color: #006969;
+        font-weight: 700;
+        font-size: 2.3rem;
+        line-height: 3rem;
+    }
+    .description-2{
+        width: 24rem;
+        font-weight: 200;
+        font-size: -0.8rem;
+        color: rgba(37, 32, 30, 0.75);
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 5rem;
+        padding: 3% 0  ;
+    }
+}
+    .Right-side{
+        .Shape3{
+            width: 30rem;
+            height: 30rem;
+            background-color: $C1;
+            z-index: -1;
+            top: 30%;
+            right: 4.9%;
+            position: absolute;
+            border-radius: 99px;
+            transform: rotate(9deg);
+        }
+        .Shape4{
+            width: 31rem;
+            height: 31rem;
+            background-color: $C2;
+            z-index: -1;
+            position: absolute;
+            border-radius: 99px;
+            transform: rotate(25deg);
+            top: 30%;
+            right: 3.5%;
+        }
+        img{
+            // width:30rem;
+            aspect-ratio: 1/2;
+            height: 39rem;
+        }
+    }
+}

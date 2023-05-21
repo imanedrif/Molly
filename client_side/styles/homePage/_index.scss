@@ -1,0 +1,22 @@
+.HomePage{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Shape1{
+    position: absolute;
+    width: 25rem;
+    height: 25rem;
+    background-color: #FF8552;
+    z-index: -1;
+    border-radius: 99px;
+    transform: rotate(45deg);
+    left: -9%;
+    top: -19%;
+}
+
+// imports
+@import 'petsForAdoption.scss';
+@import 'sercives.scss';
+@import 'petAdvices.scss';

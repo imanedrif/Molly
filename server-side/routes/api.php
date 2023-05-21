@@ -26,33 +26,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('register', [AuthController::class, 'Register']);
-Route::post('login', [AuthController::class, 'Login']);
+Route::post('/login', [AuthController::class, 'Login'])->name('login');
+Route::post('logout', [AuthController::class, 'Logout']);
 
 // pet routes
-Route::post('pets',[PetController::class,'store'])->middleware('auth');
+Route::post('pets',[PetController::class,'store'])->middleware('auth:sanctum');
 Route::get('pets',[PetController::class,'index']);
 Route::get('pets/{id}',[PetController::class,'show']);
-Route::patch('pets/{id}',[PetController::class,'update'])->middleware('auth');
-Route::delete('pets/{id}',[PetController::class,'destroy'])->middleware('auth');
+Route::patch('pets/{id}',[PetController::class,'update'])->middleware('auth:sanctum');
+Route::delete('pets/{id}',[PetController::class,'destroy'])->middleware('auth:sanctum');
 
 // wishlist routes
-Route::get('wishlists',[WishlistController::class,'index'])->middleware('auth');
-Route::post('wishlists',[WishlistController::class,'store'])->middleware('auth');
-Route::delete('wishlists/{id}',[WishlistController::class,'destroy'])->middleware('auth');
+Route::get('wishlists',[WishlistController::class,'index'])->middleware('auth:sanctum');
+Route::post('wishlists',[WishlistController::class,'store'])->middleware('auth:sanctum');
+Route::delete('wishlists/{id}',[WishlistController::class,'destroy'])->middleware('auth:sanctum');
 
 // postSOS routes
-Route::get('SOS',[PostSOSController::class,'index'])->middleware('auth');
-Route::post('SOS/add',[PostSOSController::class,'create'])->middleware('auth');
-Route::get('SOS/{postSOS}',[PostSOSController::class,'show'])->middleware('auth');
+Route::get('SOS',[PostSOSController::class,'index'])->middleware('auth:sanctum');
+Route::post('SOS/add',[PostSOSController::class,'create'])->middleware('auth:sanctum');
+Route::get('SOS/{postSOS}',[PostSOSController::class,'show'])->middleware('auth:sanctum');
 
 // comment routes
-Route::post('comments',[CommentController::class,'store'])->middleware('auth');
+Route::post('comments',[CommentController::class,'store'])->middleware('auth:sanctum');
 Route::patch('comments/{comment}',[CommentController::class,'update']);
 Route::delete('comments/{comment}',[CommentController::class,'destroy']);
 
 // likes routes
-Route::post('like',[LikeController::class,'like'])->middleware('auth');
+Route::post('like',[LikeController::class,'like'])->middleware('auth:sanctum');
 
 // reply routes
-Route::post('/replies',[CommentReplyController::class,'create'])->middleware('auth');
-Route::get('replies/{reply}',[CommentReplyController::class,'show']);
+Route::post('/replies',[CommentReplyController::class,'create'])->middleware('auth:sanctum');
+Route::get('replies/{reply}',[CommentReplyController::class,'show'])->middleware('auth:sanctum');
