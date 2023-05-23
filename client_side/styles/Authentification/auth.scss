@@ -1,0 +1,159 @@
+.register,.login {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+
+    .Shape1 {
+        top: -30%;
+        left: -15%;
+    }
+
+    .shape2 {
+        position: absolute;
+        z-index: -2;
+        width: 24rem;
+        height: 22rem;
+        background-color: $C3;
+        opacity: 0.4;
+        border-radius: 99px;
+        transform: rotate(72deg);
+        left: -9%;
+        top: 80%;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    height: 75vh;
+    gap: 5rem;
+    border: 1px solid rgba(37, 32, 30, 0.1);
+    box-shadow: (0px 10px 20px rgba(0, 0, 0, 0.28));
+    max-width: 57rem;
+
+
+    .left {
+        height: 100%;
+        width: 50%;
+        background-color: $C1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        img {
+            max-width: 65%;
+            height: auto;
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: $darkC1;
+            position: relative;
+
+            .shape {
+                width: 1.8rem;
+                height: 1.8rem;
+                background-color: $C2;
+                position: absolute;
+                border-radius: 9px;
+                top: 9%;
+                left: 9%;
+                z-index: -1;
+                transform: rotate(20deg);
+            }
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            .MuiTextField-root {
+                width: 35%;
+                min-width: 17rem;
+
+                .MuiOutlinedInput-root {
+                    background-color: white;
+                    border-radius: 100px;
+                    border: 0.2px solid #99a2a5;
+                }
+
+                .MuiInputLabel-root {
+                    padding: 1%;
+                    font-weight: 200;
+                    font-size: 0.7rem;
+                }
+            }
+        }
+
+        .buttom {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .text {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.3rem;
+                font-size: small;
+                color: $darkC1;
+                font-style: normal;
+                margin-top: 1rem;
+
+                a {
+                    text-decoration: none;
+                }
+
+                span {
+                    color: $C3;
+                    font-weight: 600;
+                }
+            }
+
+            .Secondary {
+                width: fit-content;
+                height: 2.4rem;
+            }
+        }
+    }
+}
+
+.login {
+    .container {
+        gap: 12rem;
+
+        h1 {
+            position: relative;
+
+            .shape3 {
+                width: 4rem;
+                position: absolute;
+                top: -0.41rem;
+                left: 6%;
+                z-index: -1;
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+            padding-left: 5%;
+        }
+    }
+}

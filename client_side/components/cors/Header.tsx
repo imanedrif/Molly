@@ -55,7 +55,7 @@ const Header = () => {
             )}
         </div>
         <div className="Actions">
-            <Link href='/login'>
+            <Link href='/Login'>
             <PrimaryButton text="Login" />
             </Link>
         </div>
