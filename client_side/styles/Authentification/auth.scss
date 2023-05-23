@@ -35,19 +35,20 @@
 
     .left {
         height: 100%;
-        width: 50%;
+        width: 100%;
         background-color: $C1;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
 
         img {
-            max-width: 65%;
+            max-width: 67%;
             height: auto;
         }
     }
 
     .right {
+        padding-top: 18%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -133,7 +134,15 @@
 
 .login {
     .container {
-        gap: 12rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8rem;
+        .left{
+            width: 115%;
+            height:75vh;
+        }
 
         h1 {
             position: relative;
@@ -153,7 +162,7 @@
             align-items: flex-start;
             justify-content: center;
             gap: 1rem;
-            padding-left: 5%;
+            // padding-left: 15%;
         }
     }
 }

@@ -6,6 +6,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { SecondaryButton } from '@/components/cors/buttons';
 import Link from 'next/link';
+import { motion } from 'framer-motion'
+
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,9 +22,22 @@ const Register = () => {
       <div className="Shape1"></div>
       <Header />
       <div className='container'>
-        <div className="left">
-          <Image src='/img/authimg.svg' width={500} height={400} alt='auth-img' />
-        </div>
+        <motion.div
+          initial={{ x: 1000 }}
+          animate={{ x: 0 }}
+          exit={{ x: -1000 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="left">
+            <Image src='/img/authimg.svg' width={500} height={400} alt='auth-img' />
+          </div>
+        </motion.div>
+        <motion.div
+            initial={{ x: -500, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 1000, opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
         <div className="right">
           <div className="head">
             <h1>
@@ -105,8 +120,10 @@ const Register = () => {
             </div>
           </div>
         </div>
+        </motion.div>
         <div className="shape2"></div>
       </div>
+
     </div>
   )
 }
