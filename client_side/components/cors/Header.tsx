@@ -2,30 +2,62 @@ import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
 import { PrimaryButton } from './buttons'
+import { useRouter } from 'next/router'
 
 
 const Header = () => {
+    const router = useRouter()
+    
   return (
     <div className='Header'>
         <div className="Logo">
-            <Image src="/logo.svg" width={100} height={40} alt='logo'/>
+            <Link href='/'>
+                <Image src="/logo.svg" width={100} height={40} alt='logo'/>
+            </Link>
         </div>
         <div className="Menu">
+            {router.pathname=='/'?(
+                <>
+                <Link href="/">
+                    Home
+                </Link>
+                <Link href="#pets">
+                    Pets
+                </Link>
+                <Link href="#services">
+                    Services
+                </Link>
+                <Link href="#about">
+                    About
+                </Link>
+                <Link href="#tips">
+                    Tips
+                </Link>
+                </>
+            ):(
+                <>
                 <Link href="/">
                     Home
                 </Link>
                 <Link href="/pets">
                     Pets
                 </Link>
-                <Link href="/">
+                <Link href="/services">
                     Services
                 </Link>
-                <Link href="/">
+                <Link href="/about">
                     About
                 </Link>
+                <Link href="/tips">
+                    Tips
+                </Link>
+                </>
+            )}
         </div>
         <div className="Actions">
-            <PrimaryButton text="Sign Up" />
+            <Link href='/login'>
+            <PrimaryButton text="Login" />
+            </Link>
         </div>
     </div>
   )

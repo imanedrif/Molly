@@ -6,7 +6,9 @@ $C3 : #E6D76D;
 $C4 : #E6E6E6;
 $darkC1 : #003636;
 
-.drakC1{
+
+
+.darkC1{
   color:$darkC1;
 }
 .C1{
@@ -32,15 +34,18 @@ $darkC1 : #003636;
 html{
   font-size: 20px;
   font-family: 'Poppins';
+  scroll-behavior:smooth !important;
 }
 @media (max-width:1300px) {
     html{
       font-size:16px;
     }
 }
-
-
-
+@media (max-width:750px) {
+    html{
+      font-size:9px;
+    }
+}
 
 
 
@@ -58,4 +63,7 @@ html{
 @import 'cors/header.scss';
 @import 'cors/hero.scss';
 @import 'cors/buttons.scss';
+@import 'cors/footer.scss';
+@import 'cors/404.scss';
 @import 'homePage/index.scss';
+@import 'announcepage/announce.scss';

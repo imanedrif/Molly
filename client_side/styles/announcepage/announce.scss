@@ -1,0 +1,181 @@
+.add-announce{
+    padding: 4% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+    color: $darkC1;
+    position: relative;
+    .shape1{
+        position: absolute;
+        z-index: -1;
+        width: 24rem;
+        height: 22rem;
+        background-color: $C2;
+        border-radius: 99px;
+        transform: rotate(25.23deg);
+        left: -18%;
+        top: -2%;
+    }
+    .shape2{
+        position: absolute;
+        z-index: -2;
+        width: 24rem;
+        height: 22rem;
+        background-color: $C3;
+        opacity: 0.4;
+        border-radius: 99px;
+        transform: rotate(72deg);
+        left: -17%;
+        top: 5%;
+
+    }
+    h1{
+        font-weight: 700;
+        font-size: 2.6rem;
+        padding: 0 7%;
+    }
+    .sections{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 4rem;
+        padding: 0 10%;
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;  
+            gap: 1rem;
+            h2 {
+              display: inline-block;
+              font-size: 1.8rem;
+              font-weight: 500;
+            }   
+            hr {
+              flex-grow: 1;
+              padding: 0.038%;
+              border: none;
+              background-color: #ccc;
+            }
+          }
+        .section{
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            p{
+                font-weight: 400;
+                font-size:1.3rem ;
+            }
+            .contents{
+                display: flex;
+                flex-direction: column;
+                gap: 1.4rem;
+                .content1{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    .MuiTextField-root {
+                        width: 55%;
+                        min-width: 20rem;
+                        .MuiOutlinedInput-root {
+                            border: 1px solid #99A2A5;
+                            border-radius: 10;
+                            height: 3rem;
+                            fieldset {
+                                border: none;
+                            }
+                        }
+                        .MuiInputLabel-root{
+                            font-weight: 200;
+                            font-size: 0.8rem;
+                         }
+                    }
+                }
+                .content2 , .content3{
+                    display: flex;
+                    .MuiTextField-root{
+                        width: 15%;
+                        min-width: 10rem;
+                    }
+                    .category , .city, .gender {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.6rem;
+                        width: 41%;
+                    }
+                }
+            }
+            .content4{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 2.5rem;
+                div{
+                    display: flex;
+                    align-items: center;
+                    p{
+                        font-size: 0.9rem;
+                        font-weight: 300;
+                        color: black;
+                        opacity: 0.75;
+                    }
+
+                }
+            }
+            .content5 {
+                width: 70%;
+                .custom-textarea {
+                    border-radius:9px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    padding: 2% 5% 5% 3%;
+                    border: 1px solid #99A2A5;
+                }
+            }
+            .content6{
+                display: flex;
+                justify-content: center;
+                font-style: normal;
+                .inputfile {
+                    width: 0.1px;
+                    height: 0.1px;
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
+                }
+                div{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-width: 1px 1px 3px 3px;
+                    border-style: solid;
+                    border-color: #E6E6E6;
+                    border-radius: 40px;
+                    width: 95%;
+                    height: 13rem;
+                    p{
+                        font-weight: 600;
+                        font-size: 1.5rem;
+                    }
+                    span{
+                        font-weight: 600;
+                        font-size: 1.5rem;
+                        color: $C3;
+                    }
+                    label{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 0.4rem;
+                    }
+                }
+            }
+        }
+    }
+    .button{
+        display: flex;
+        justify-content:right;
+        padding-right: 9%;
+    }
+}

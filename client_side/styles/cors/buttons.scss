@@ -1,5 +1,5 @@
 .Primary{
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 2.2rem;
     color: white;
     border-radius: 30px;
     background-color: #297373;
@@ -8,6 +8,20 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: 400;
+}
+.PrimaryIcon{
+    padding: 1rem 3rem;
+    color: white;
+    border-radius: 30px;
+    background-color: #297373;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 .OutlineIcon{
     padding: 0.5rem 1.5rem;

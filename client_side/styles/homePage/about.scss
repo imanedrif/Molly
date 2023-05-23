@@ -1,0 +1,41 @@
+.about{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 9rem;
+    align-items: center;
+    padding: 0 4% 0 4% ;
+    .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1.5rem;
+        .head{
+            display: flex;
+            flex-direction: row;
+            gap: 0.3rem;
+            font-weight: 700;
+            font-size: 3.3rem;
+            color: $darkC1;
+            font-style: normal;
+            p{
+                color: $C3;
+            }
+        }
+        .description{
+            font-size: 1rem;
+            font-weight: 300;
+            color:rgba(37, 32, 30, 0.75);
+            line-height: 1.5rem;
+            span{
+                color: $C1;
+                font-weight: 700;
+            }
+        }
+    }
+    .about-img{
+        width: 35rem;
+        height: 35rem;
+    }
+}

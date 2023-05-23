@@ -1,0 +1,65 @@
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 252, 247, 0.663);
+    z-index: -1;
+    color: $C1;
+    font-weight: 700;
+    
+    .shape1{
+        position: absolute;
+        z-index: -1;
+        width: 30rem;
+        height: 30rem;
+        background-color: $C3;
+        opacity: 50%;
+        border-radius: 99px;
+        transform: rotate(57deg);
+        left: -15%;
+        top: -10%;
+    }
+    .shape2{
+        position: absolute;
+        z-index: -1;
+        width: 30rem;
+        height: 30rem;
+        background-color: $C2;
+        opacity: 50%;
+        border-radius: 99px;
+        transform: rotate(57deg);
+        left: 85%;
+        top: 60%;
+    }
+    .code{
+        font-size: 10rem;
+        display: flex;
+        align-items: center;
+        font-style: normal;
+        position: relative;
+        .vector{
+            position: absolute;
+            z-index: -1;
+            left: 38.3%;
+            top: -5%;
+        }
+        p{
+            display: flex;
+            gap: 1.5rem;
+            span{
+                background: linear-gradient(212.98deg, #E6D76D 11.68%, #FF8552 91.74%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+            }   
+        }
+    }
+    .message{
+        font-size: 4rem;
+    }
+}

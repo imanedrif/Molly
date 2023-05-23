@@ -4,9 +4,9 @@ import { SecondaryButton } from '../cors/buttons';
 import Image from 'next/image';
 const PetsForAdoption = () => {
     return (
-        <div className='PetsForAdoption'>
+        <div className='PetsForAdoption' id='pets'>
             <h1>Some Pets For Adoption</h1>
-            <Image src="/vector2.svg" width={330} height={330} alt='vector' className='vector1'/>
+            <Image src="/vectors/vector2.svg" width={330} height={330} alt='vector' className='vector1'/>
             <div className='Pets'>
                 <PetCard />
                 <PetCard />
@@ -15,7 +15,7 @@ const PetsForAdoption = () => {
                 <PetCard />
                 <PetCard />
             </div>
-            <Image src="/cercle.svg" width={200} height={200} alt='cercle' className='vector2'/>
+            <Image src="/vectors/cercle.svg" width={200} height={200} alt='cercle' className='vector2'/>
             <SecondaryButton text = "View More"/>
         </div>
     )

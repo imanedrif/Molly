@@ -6,7 +6,7 @@ import Image from 'next/image';
 const PetCard = (props:any) => {
   return (
     <div className="Pet">
-                    <Image className="Image" src="/pet1.svg" width={200} height={250} alt="Pet Image" />
+                    <Image className="Image" src="/img/pet1.svg" width={200} height={250} alt="Pet Image" />
                     <div>
 
                     <p className='Name'>

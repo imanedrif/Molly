@@ -29,32 +29,31 @@ const PetAdvices = () => {
   //   setActiveIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
   // };
   return (
-    <div className='PetAdvices'>
+    <div className='PetAdvices' id='tips'>
+          <Image src='/vectors/Vector-advice.svg' width={300} height={300} alt='light'className='vector' />
       <div className='head'>
         <p>
           Pet advices and tips
-          <Image src='/light-icon.svg' width={50} height={50} alt='light' />
+          <Image src='/icons/light-icon.svg' width={50} height={50} alt='light' />
         </p>
       </div>
       <div className='carousel-container'>
         <div className='content' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
           {data.map((e, index) => (
-            <>
-            <div className='shape'></div>
             <PetAdviceItems key={index} item={e} />
-            </>
-          ))}
+            ))}
         </div>
       </div>
         <div className='carousel-circles'>
           {data.map((_, index) => (
             <div
-              key={index}
-              className={`carousel-circle ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => setActiveIndex(index)}
+            key={index}
+            className={`carousel-circle ${activeIndex === index ? 'active' : ''}`}
+            onClick={() => setActiveIndex(index)}
             ></div>
-          ))}
+            ))}
         </div>
+      <Image src='/vectors/Vector3.svg' width={300} height={300} alt='light'className='vector2' />
     </div>
   )
 }

@@ -8,11 +8,19 @@ export const PrimaryButton = (props:any) => {
         </button>
   )
 }
+export const PrimaryButtonIcon = (props:any) => {
+  return (
+        <button className='PrimaryIcon Button'>
+            {props.text}
+            {props.icon}
+        </button>
+  )
+}
 export const OutlineIconButton = (props:any) => {
   return (
-        <button className='OutlineIcon Button'>
+        <button className='OutlineIcon Button' >
             {props.text}
-            <ArrowForwardIosIcon className='buttonIcon'/>
+            {props.icon}
         </button>
   )
 }
