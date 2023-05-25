@@ -31,7 +31,7 @@
     border: 1px solid rgba(37, 32, 30, 0.1);
     box-shadow: (0px 10px 20px rgba(0, 0, 0, 0.28));
     max-width: 57rem;
-
+    border-radius: 10px;
 
     .left {
         height: 100%;
@@ -40,6 +40,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
+        border-radius: 0 10px 10px 0 ;
 
         img {
             max-width: 67%;
@@ -129,6 +130,11 @@
                 height: 2.4rem;
             }
         }
+    }
+}
+.register{
+    .left{
+        border-radius: 10px 0px 0px 10px;
     }
 }
 

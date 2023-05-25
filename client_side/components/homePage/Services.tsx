@@ -1,6 +1,7 @@
 import React from 'react'
 import { PrimaryButton } from '../cors/buttons'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Services = () => {
   return (
@@ -12,7 +13,9 @@ const Services = () => {
                 <div className="Right">
                     <p className="Title">Pet Adoption <Image src="/icons/pas.svg" width={28} height={28} alt='pasicon'/></p>
                     <p className="Description">Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+                    <Link href='/pets'>
                     <PrimaryButton text="Discover"/>
+                    </Link>
                 </div>
             </div>
             <div className="Card">

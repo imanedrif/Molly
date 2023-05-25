@@ -1,0 +1,114 @@
+.petdetails{
+    display: flex;
+    flex-direction: column;
+    gap: 12.38rem;
+    .content{
+        // padding-top: 1%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        color: $darkC1;
+        p{
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 50%;
+            .title{
+                p{
+                    font-weight: 700;
+                    color: $darkC1;
+                    font-size: 2rem;
+                    
+                }
+            }
+            img{
+                border-radius: 20px;
+                width: 20rem;
+                height: 42%;
+            }
+            .details{
+                display: flex;
+                flex-direction: column;
+                gap: 2.5rem;
+                width: 100%;
+                span{
+                    font-weight: 200;
+                }
+                div{
+                    gap: 0.5rem;
+                    display: flex;
+                    flex-direction: row;
+                }
+                .D1{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2rem;
+                    align-items: center;
+                    hr{
+                        background-color: $darkC1;
+                        padding: 0.13% 0.4% ;
+                        border: none;
+                    }
+                }
+                .D2{
+                    span{
+                        color: $C3;
+                        font-weight: 400;
+                    }
+                }
+                .D3{
+                    display: flex;
+                    flex-direction: column;
+                    span{
+                        width: 28rem;
+                    }
+                }
+                .D4{
+                    span{
+                        color: green;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+        .right{
+            padding-top: 6rem;
+            .MuiCard-root{
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+                border-radius: 2rem 2rem 1rem 1rem;
+                width: 18rem;
+                height: 23rem;
+                .MuiCardHeader-root{
+                    text-align: center;
+                    background-color: $C3;
+                    .MuiCardHeader-title{
+                        font-size: 1.3rem;
+                        font-weight: 700;
+                        color: $C1;
+                    }
+                }
+                .MuiCardContent-root{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 auto;
+                    gap: 3rem;
+                    span{
+                        color: $C3;
+                    }
+                    .MuiInput-input{
+                        color: $darkC1;
+                        font-weight: 700;
+                        font-size: 1.7rem;
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+}

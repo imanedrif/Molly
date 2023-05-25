@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 9rem;
+    gap: 5rem;
     align-items: center;
-    padding: 0 4% 0 4% ;
+    overflow: hidden;
+    padding:0 2%;
     .left{
         display: flex;
         flex-direction: column;
@@ -37,5 +38,15 @@
     .about-img{
         width: 35rem;
         height: 35rem;
+    }
+}
+
+@include respond-to("small"){
+    .about{
+        gap: 1rem;
+        flex-direction: column;
+        .left{
+            padding: 1rem;
+        }
     }
 }

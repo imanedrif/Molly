@@ -1,5 +1,5 @@
 .Services{
-    // padding-top: 7%;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,7 +38,7 @@
                 font-weight: 600;
                 color:$darkC1;
                 img{
-                    max-width: 25%;
+                    max-width: 2.1rem;
                     height: auto;
                 }
             }
@@ -63,6 +63,7 @@
         .Left{
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             gap: 1rem;
             padding: 3% 4.4%;
             top: 54%;
@@ -72,8 +73,10 @@
                 width: 17rem;
                 font-weight: 600;
                 color:$darkC1;
+                display: flex;
+                align-items: center;
                 img{
-                    max-width: 25%;
+                    max-width: 2.1rem;
                     height: auto;
                 }
             }
@@ -84,9 +87,30 @@
                 color: rgba(37, 32, 30, 0.5);
             }
             button{
-                margin-left: 35%;
+                margin-left: 2rem;
             }
         }
     }
 }
 
+@include respond-to("small"){
+    .Cards{
+        .Card{
+            .Right{
+                padding-left: 51%;
+                .Title{
+                    font-size: 2.1rem;
+                }
+            }
+            .Left{
+                padding: 4% 4.4%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                button{
+
+                }
+            }
+        }
+    }
+}

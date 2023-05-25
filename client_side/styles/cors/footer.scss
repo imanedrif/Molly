@@ -1,8 +1,8 @@
 .footer {
+  margin-top: 2rem;
   background-color: $C2;
-  // padding: 2% 0 1% 0;
   padding: 2.4% 0 0 0;
-  border-radius: 40px 40px 0px 0px;
+  border-radius: 2rem 2rem 0px 0px;
   opacity: 0.98;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-
+    width: 100%;
     hr {
       width: 100%;
       border: 0.01rem solid #ffff;
@@ -97,6 +97,24 @@
         display: flex;
         gap: 0.8rem;
       }
+    }
+  }
+}
+
+@include respond-to("small"){
+  .footer{
+    justify-content: start;
+    align-items: start;
+    padding-left:1rem ;
+    width: 100%;
+    .top{
+      display: flex;
+      width: 100%;
+      
+      // grid-template-rows: repeat(2,2fr);
+      flex-direction: column-reverse;
+      gap: 1rem;
+
     }
   }
 }

@@ -22,5 +22,16 @@
         }
       }
     }
-  }
+    .openMenu{
+      background-color: #006565;
+    }
+    .Menu {
+      a {
+        text-decoration: none; 
+      }
+      .MuiMenu-paper {
+        top: 3rem;
+      }
+    }
+}
   

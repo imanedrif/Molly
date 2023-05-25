@@ -1,0 +1,93 @@
+.pets{
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    .parent{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .head{
+            padding-left: 3%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: $C1;
+            span{
+                background: linear-gradient(212.98deg, #E6D76D 11.68%, #FF8552 91.74%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+        h2{
+            align-self: center;
+        }
+        .MuiGrid-container{
+            background-color: white;
+            width: 90%;
+            height: 100vh;
+            border: 1px solid rgba(230, 230, 230, 1);
+            margin: 0 auto;
+            .left{
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                width: 22%;
+                height: 100vh;
+                border-right: 1px solid rgba(230, 230, 230, 1);
+                .title{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0 6% ;
+                    gap: 1rem;
+                    color: rgba(37, 32, 30, 0.75);
+                    font-weight: 700;
+                    hr{
+                        flex-grow: 1;
+                        padding: 0.038%;
+                        border: none;
+                        background-color: rgba(37, 32, 30, 0.25);;
+                    }
+                }
+                .category , .gender , .age{      
+                    .checkboxContainer{
+                        display: flex;
+                        justify-content: flex-start;
+                        gap: 0.6rem;
+                        align-items: flex-start;
+                        border: none;
+                        height: fit-content;
+                        .MuiGrid-item{
+                            display: flex;
+                        }
+                        .items{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 0.7rem;
+                            color: rgba(37, 32, 30, 0.75);
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+            .right{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .content{
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+}
+
+@import './petsdetails.scss'
