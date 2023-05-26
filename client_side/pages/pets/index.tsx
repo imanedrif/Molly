@@ -3,6 +3,7 @@ import Header from '@/components/cors/Header'
 import PetCard from '@/components/homePage/imports/PetCard'
 import { Card, Checkbox, Grid } from '@mui/material'
 import React from 'react'
+import PaginationComponent from '@/components/pets/PaginationComponent'
 
 const Index = () => {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -23,6 +24,25 @@ const Index = () => {
     { value: 'bird' },
     { value: 'rabbit' },
     { value: 'hamster' },
+  ]
+  const data = [
+    {name:'Imane',gender:'Male',age:20,city:'Salé'},
+    {name:'Yssine',gender:'Male',age:20,city:'Rabat'},
+    {name:'Aiaijs',gender:'Male',age:20,city:'Asfi'},
+    {name:'akpadpkapdkapk',gender:'Male',age:20,city:'Rabat'},
+    {name:'asijaisj',gender:'Male',age:20,city:'Rabat'},
+    {name:'Unknown',gender:'Male',age:20,city:'Kkk'},
+    {name:'Simba',gender:'Male',age:20,city:'Ifrane'},
+    {name:'LWE7CH',gender:'Male',age:20,city:'Tajsak'},
+    {name:'MESSI',gender:'Male',age:20,city:'PP'},
+    {name:'MARADONA',gender:'Male',age:20,city:'MM'},
+    {name:'PELE',gender:'Male',age:20,city:'Rabat'},
+    {name:'DAVID SILVA',gender:'Male',age:20,city:'NN'},
+    {name:'ARAUJO',gender:'Male',age:20,city:'BB'},
+    {name:'BERNARDO SILVA',gender:'Male',age:20,city:'VV'},
+    {name:'DANI ALVES',gender:'Male',age:20,city:'..'},
+    // waaa wlah ta d7kt mn niyti
+    // HHHHHHHHHHHHHHHHHHHHHHHHHHHH 
   ]
   return (
     <>  
@@ -85,6 +105,9 @@ const Index = () => {
           <Grid xs={9} className='right'>
             <h2>Discover available pets</h2>
             <div >
+            <PaginationComponent
+          data={data}
+        />
             </div>
           </Grid>
         </Grid>

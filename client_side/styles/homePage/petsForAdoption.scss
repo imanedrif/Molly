@@ -24,57 +24,56 @@
     .Title{
         font-size:1rem;
     }
-    .Pets{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 2.5rem;
-
-        .Pet{
-            padding:0.8rem;
-            background-color: white;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.09);
-            border-radius: 12px;
-            display:flex;
-            flex-direction:column;
-            gap:0.6rem;
-            img{
-                width:100%;
-                // height:100%;
-                // aspect-ratio : 1/2;
-                border-radius:10px;
-                height: 100%;
-            }
-            .Name{
-                font-size: 1rem;
+}
+.Pets{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5rem;
+}
+.Pet{
+    padding:0.8rem;
+    background-color: white;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.09);
+    border-radius: 12px;
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+    img{
+        width:100%;
+        // height:100%;
+        // aspect-ratio : 1/2;
+        border-radius:10px;
+        height: 100%;
+    }
+    .Name{
+        font-size: 1rem;
+        font-weight:600;
+    }
+    .Infos{
+        display:flex;
+        flex-direction:column;
+        gap:0.5rem;
+        .Row{
+            display:flex; 
+            flex-direction:row;
+            gap:0.3rem;
+        }
+        .Info{
+            font-weight:300;
+            color:#667479;
+            span{
                 font-weight:600;
-            }
-            .Infos{
-                display:flex;
-                flex-direction:column;
-                gap:0.5rem;
-                .Row{
-                    display:flex; 
-                    flex-direction:row;
-                    gap:0.3rem;
-                }
-                .Info{
-                    font-weight:300;
-                    color:#667479;
-                    span{
-                        font-weight:600;
-                    }
-                    
-                }
-            }
-            .Actions{
-                display:flex;
-                flex-direction:row;
-                gap:1rem;
             }
             
         }
     }
-}
+    .Actions{
+        display:flex;
+        flex-direction:row;
+        gap:1rem;
+    }
+    
+} 
 
 @include respond-to("small"){
     .PetsForAdoption{

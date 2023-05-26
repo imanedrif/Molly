@@ -38,7 +38,7 @@ const PetAdvices = () => {
         </p>
       </div>
       <div className='carousel-container'>
-        <div className='content' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+        <div className='contents' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
           {data.map((e, index) => (
             <PetAdviceItems key={index} item={e} />
             ))}

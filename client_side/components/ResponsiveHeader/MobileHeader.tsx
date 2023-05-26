@@ -15,13 +15,13 @@ const MobileHeader = () => {
     return (
         <Box
             sx={{
-                width: "100%",
-                maxHeight: "100px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 flexDirection: "row",
                 padding: "1rem 3rem",
+                width: "100%",
+                maxHeight: "100px",
                 "& .Menu": {
                     a: {
                       textDecoration: "none",

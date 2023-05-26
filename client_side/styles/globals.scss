@@ -59,10 +59,6 @@ html{
           @content;
       }
   }
-  // NOPE HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-  // I know , just kidding
-  // share server lemme see
-  // already
 
   @else if $breakpoint==medium {
       @media (max-width: 960px) {
@@ -109,3 +105,4 @@ html{
 @import 'announcepage/announce.scss';
 @import 'Authentification/auth.scss';
 @import 'pets/pets.scss';
+@import 'Wishlist/wishlist.scss';

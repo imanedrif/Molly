@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 12.38rem;
-    .content{
+    .contents{
         // padding-top: 1%;
         display: flex;
         flex-direction: row;
@@ -75,39 +75,65 @@
                 }
             }
         }
-        .right{
-            padding-top: 6rem;
-            .MuiCard-root{
-                display: flex;
-                flex-direction: column;
-                gap: 1.6rem;
-                border-radius: 2rem 2rem 1rem 1rem;
-                width: 18rem;
-                height: 23rem;
-                .MuiCardHeader-root{
-                    text-align: center;
-                    background-color: $C3;
-                    .MuiCardHeader-title{
-                        font-size: 1.3rem;
-                        font-weight: 700;
-                        color: $C1;
+    }
+}
+.right{
+    padding-top: 6rem;
+    .MuiCard-root{
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        border-radius: 2rem 2rem 1rem 1rem;
+        width: 18rem;
+        height: 23rem;
+        .MuiCardHeader-root{
+            text-align: center;
+            background-color: $C3;
+            .MuiCardHeader-title{
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: $C1;
+            }
+        }
+        .MuiCardContent-root{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            gap: 3rem;
+            span{
+                color: $C3;
+            }
+            .MuiInput-input{
+                color: $darkC1;
+                font-weight: 700;
+                font-size: 1.7rem;
+                width: 80%;
+            }
+        }
+    }
+}
+@include respond-to('small'){
+    .petdetails{
+        .contents{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .left{
+                align-items: center;
+                img{
+                    width: 30rem;
+                }
+                .details{
+                    align-items: center;
+                    .D1{
+                        display: block;
                     }
                 }
-                .MuiCardContent-root{
-                    display: flex;
-                    flex-direction: column;
-                    margin: 0 auto;
-                    gap: 3rem;
-                    span{
-                        color: $C3;
-                    }
-                    .MuiInput-input{
-                        color: $darkC1;
-                        font-weight: 700;
-                        font-size: 1.7rem;
-                        width: 80%;
-                    }
-                }
+            }
+            p , span{
+                font-size: 1.4rem;
+                text-align: center;
             }
         }
     }

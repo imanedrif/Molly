@@ -21,6 +21,8 @@ const Register = () => {
     <div className='register'>
       <div className="Shape1"></div>
       <Header />
+      <div className="content">
+
       <div className='container'>
         <motion.div
           initial={{ x: 1000 }}
@@ -122,6 +124,7 @@ const Register = () => {
         </div>
         </motion.div>
         <div className="shape2"></div>
+      </div>
       </div>
 
     </div>

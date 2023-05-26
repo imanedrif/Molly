@@ -1,3 +1,4 @@
+import UserCard from '@/components/UserCard'
 import Footer from '@/components/cors/Footer'
 import Header from '@/components/cors/Header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
@@ -6,16 +7,11 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 
 const PetDetails = () => {
-    const [showNumber, setShowNumber] = useState(false);
-    const phoneNumber = '1234567890';
-    const handleToggleNumber = () => {
-        setShowNumber((prevShowNumber) => !prevShowNumber);
-    };
     return (
         <>
         <Header />
         <div className='petdetails'>
-            <div className="content">
+            <div className="contents">
                 <div className="left">
                     <div className="title">
                         <p>Pet details</p>
@@ -45,25 +41,7 @@ const PetDetails = () => {
                     </div>
                 </div>
                 <div className="right">
-                    <Card>
-                        <CardHeader title="Advertiser details" />
-                        <CardContent>
-                            <p>Name: <span>Imane</span></p>
-                            <p>City: <span>Rabat</span></p>
-                            <Input
-                                disableUnderline
-                                type={showNumber ? 'text' : 'password'}
-                                value={showNumber ? phoneNumber : '************'}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton onClick={handleToggleNumber} edge="end">
-                                            {showNumber ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                            />
-                        </CardContent>
-                    </Card>
+                    <UserCard/>
                 </div>
             </div>
             <Footer />

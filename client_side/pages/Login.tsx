@@ -14,8 +14,11 @@ const Login = () => {
         <div className='login'>
             <div className="Shape1"></div>
             <Header />
+            <div className="content">
+
             <div className='container'>
                 <motion.div
+                className="Motion"
                     initial={{ x: 500, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -1000, opacity: 0 }}
@@ -71,6 +74,8 @@ const Login = () => {
                     </div>
                 </motion.div>
                 <motion.div
+
+                className='Motion'
                     initial={{ x: -1000 }}
                     animate={{ x: 0 }}
                     exit={{ x: 1000 }}
@@ -81,6 +86,7 @@ const Login = () => {
                     </div>
                 </motion.div>
                 <div className="shape2"></div>
+            </div>
             </div>
         </div>
 
