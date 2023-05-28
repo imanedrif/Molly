@@ -21,6 +21,23 @@
           color: #006565;
         }
       }
+      .Dropdown {
+        position: relative;
+      }
+
+      .DropdownMenu {
+        position: absolute;
+        width: max-content;
+        top: 100%;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: white;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        font-size: 0.8rem;
+      }
     }
     .openMenu{
       background-color: #006565;

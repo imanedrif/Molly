@@ -41,8 +41,7 @@ const Index = () => {
     {name:'ARAUJO',gender:'Male',age:20,city:'BB'},
     {name:'BERNARDO SILVA',gender:'Male',age:20,city:'VV'},
     {name:'DANI ALVES',gender:'Male',age:20,city:'..'},
-    // waaa wlah ta d7kt mn niyti
-    // HHHHHHHHHHHHHHHHHHHHHHHHHHHH 
+
   ]
   return (
     <>  
