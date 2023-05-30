@@ -42,8 +42,7 @@ class PetController extends Controller
         $pet->image = $imageName;
         $pet->save();
 
-        Storage::disk('public')->put($imageName,file_get_contents($image));
-
+        Storage::disk('public')->putFileAs('pet/image',$image,$imageName);
         return response()->json([
             'message'=>'Pet created successufully '
         ], 200);
@@ -85,7 +84,7 @@ class PetController extends Controller
             $image = $request->file('image');
             $imageName = Str::random(20).".".$image->getClientOriginalExtension();
             $pet->image = $imageName;
-            Storage::disk('public')->put($imageName,file_get_contents($image));
+            Storage::disk('public')->putFileAs('pet/image',$image,$imageName);
         }
 
         $pet->name = $validation['name'];

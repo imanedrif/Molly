@@ -16,7 +16,7 @@ class AuthController extends Controller
         $validation = Validator::make($input,[
             'name'=>'required',
             'email'=>'required|email',
-            'phoneNumber'=>'required|min:10|max:10',
+            'phoneNumber'=>'required|numeric',
             'password'=>'required|min:8',
         ]);
 
@@ -26,9 +26,8 @@ class AuthController extends Controller
 
         $exist = User::where('email',$input['email'])->first();
         if($exist){
-            return response()->json(['error'=>'Email already exist'], 401);
+            return response()->json(['error'=>'Email already exist'], 409);
         }
-
         $user = new User();
         $user->name = $input['name'];
         $user->email = $input['email'];

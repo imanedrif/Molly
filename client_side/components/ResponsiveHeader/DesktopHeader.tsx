@@ -1,13 +1,21 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { PrimaryButton } from '../cors/buttons'
 
 const DesktopHeader = () => {
     const router = useRouter()
     const [showDropdown, setShowDropdown] = useState(false);
+    const [userData, setUserData] = useState(null);
 
+    useEffect(() => {
+      const user = localStorage.getItem('user');
+      if (user) {
+        console.log(user)
+      }
+    }, []);
+  
     const handleMouseEnter = () => {
         setShowDropdown(true);
     };
@@ -74,13 +82,18 @@ const DesktopHeader = () => {
                                 Tips
                             </Link>
                         </>
-                    // </div>
                 )}
             </div>
             <div className="Actions">
-                <Link href='/Login'>
-                    <PrimaryButton text="Login" />
-                </Link>
+                {userData ? (
+                    <h1>Hi {userData.name}</h1>
+                ): (
+                    <>
+                        <Link href="/login">
+                            <PrimaryButton>Login</PrimaryButton>
+                            </Link>
+                        </>
+                )}
             </div>
         </div>
     )

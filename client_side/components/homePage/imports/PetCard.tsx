@@ -2,11 +2,11 @@ import React from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import Image from 'next/image';
-
+// import snth from '../../../../server-side/storage/app/public/'
 const PetCard = (props: any) => {
   return (
     <div className="Pet">
-      <Image  src="/img/pet1.svg" width={200} height={250} alt="Pet Image" />
+      <img  src={`${process.env.NEXT_PUBLIC_APP_URL}/images/TYVN1ZbitSZXfiBPg3jn.jpg`} width={200} height={250} alt="Pet Image" />
       <div>
         <p className='Name'>
           {props.name}

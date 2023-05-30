@@ -25,8 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+
 Route::post('register', [AuthController::class, 'Register']);
-Route::post('/login', [AuthController::class, 'Login'])->name('login');
+Route::post('login', [AuthController::class, 'Login']);
 Route::post('logout', [AuthController::class, 'Logout']);
 
 // pet routes

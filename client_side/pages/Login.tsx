@@ -6,10 +6,53 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
+
 
 const Login = () => {
+    const router =useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [loginInput,setLogininput]= useState(
+        {
+            email: '',
+            password: '',
+        }
+    );
+
+    const handleInput =(e:any)=>{
+        setLogininput({...loginInput,[e.target.name]:e.target.value})
+    }
+
+    const handleSubmit = (e:any)=>{
+        e.preventDefault()
+        const data ={
+            email:loginInput.email,
+            password:loginInput.password
+        }
+        axios.post('http://localhost:8000/api/login',data)
+        .then(res=>{
+            console.log(res.data)
+            if(res.status===200){
+                localStorage.setItem('user',JSON.stringify(res.data.user))
+                // console.log(JSON.parse(localStorage.getItem('user')))
+                router.push("/pets")
+            }
+        })
+        .catch((err:any)=>{
+            console.log(err)
+            if(err.response.status=== 401){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something is wrong!',
+                }) 
+            }
+        })
+    }
+
     return (
         <div className='login'>
             <div className="Shape1"></div>
@@ -24,7 +67,8 @@ const Login = () => {
                     exit={{ x: -1000, opacity: 0 }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
-                    <div className="right">
+                    <form onSubmit={handleSubmit}>
+                    <div className="right" >
                         <div className="head">
                             <h1>
                                 Login
@@ -35,6 +79,9 @@ const Login = () => {
                             <TextField
                                 size="small"
                                 label="Email"
+                                name='email'
+                                value={loginInput.email}
+                                onChange={handleInput}
                                 sx={{
                                     width: '35%',
                                 }}
@@ -42,6 +89,9 @@ const Login = () => {
                             <TextField
                                 size="small"
                                 label="password"
+                                name='password'
+                                value={loginInput.password}
+                                onChange={handleInput}
                                 type={showPassword ? 'text' : 'password'}
                                 InputProps={{
                                     endAdornment: (
@@ -72,6 +122,7 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
+                    </form>
                 </motion.div>
                 <motion.div
 

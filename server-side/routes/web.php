@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 Route::get('like', [LikeController::class, 'Like']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
