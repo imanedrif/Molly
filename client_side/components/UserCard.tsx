@@ -1,10 +1,18 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Card, CardContent, CardHeader, IconButton, Input, InputAdornment } from '@mui/material'
-import React, { useState } from 'react'
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    IconButton,
+    Input,
+    InputAdornment,
+} from "@mui/material";
+import React, { useState } from "react";
 
-const UserCard = () => {
+const UserCard = (props: any) => {
+    const { user } = props;
     const [showNumber, setShowNumber] = useState(false);
-    const phoneNumber = '1234567890';
+    const phoneNumber = user?.phoneNumber;
     const handleToggleNumber = () => {
         setShowNumber((prevShowNumber) => !prevShowNumber);
     };
@@ -13,16 +21,27 @@ const UserCard = () => {
             <Card>
                 <CardHeader title="Advertiser details" />
                 <CardContent>
-                    <p>Name: <span>Imane</span></p>
-                    <p>City: <span>Rabat</span></p>
+                    <p>
+                        Name: <span>{user?.name}</span>
+                    </p>
+                    <p>
+                        City: <span>Rabat</span>
+                    </p>
                     <Input
                         disableUnderline
-                        type={showNumber ? 'text' : 'password'}
-                        value={showNumber ? phoneNumber : '************'}
+                        type={showNumber ? "text" : "password"}
+                        value={showNumber ? phoneNumber : "************"}
                         endAdornment={
                             <InputAdornment position="end">
-                                <IconButton onClick={handleToggleNumber} edge="end">
-                                    {showNumber ? <Visibility /> : <VisibilityOff />}
+                                <IconButton
+                                    onClick={handleToggleNumber}
+                                    edge="end"
+                                >
+                                    {showNumber ? (
+                                        <Visibility />
+                                    ) : (
+                                        <VisibilityOff />
+                                    )}
                                 </IconButton>
                             </InputAdornment>
                         }
@@ -30,7 +49,7 @@ const UserCard = () => {
                 </CardContent>
             </Card>
         </div>
-    )
-}
+    );
+};
 
-export default UserCard
+export default UserCard;

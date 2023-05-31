@@ -1,30 +1,51 @@
-import React from 'react'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import Image from "next/image";
+import { useRouter } from "next/router";
 // import snth from '../../../../server-side/storage/app/public/'
 const PetCard = (props: any) => {
-  return (
-    <div className="Pet">
-      <img  src={`${process.env.NEXT_PUBLIC_APP_URL}/images/TYVN1ZbitSZXfiBPg3jn.jpg`} width={200} height={250} alt="Pet Image" />
-      <div>
-        <p className='Name'>
-          {props.name}
-        </p>
-        <div className='Infos'>
-          <div className="Row">
-            <p className="Info">Genre : <span>{props.gender}</span></p>
-            <p className="Info">Age : <span>{props.Age}</span></p><br />
-          </div>
-          <p className="Info">City : <span className='C3'>{props.city}</span></p>
+    const { pet } = props;
+    console.log(props);
+    const Router = useRouter();
+    return (
+        <div className="Pet">
+            <Image
+                loader={() => props.pet.image}
+                src={props.pet?.image}
+                width={100}
+                height={100}
+                alt="pets image"
+            />
+            <div>
+                <p className="Name">{pet?.name}</p>
+                <div className="Infos">
+                    <div className="Row">
+                        <p className="Info">
+                            Genre : <span>{pet?.gender}</span>
+                        </p>
+                        <p className="Info">
+                            Age : <span>{pet?.age}</span>
+                        </p>
+                        <br />
+                    </div>
+                    <p className="Info">
+                        City : <span className="C3">{props.city}</span>
+                    </p>
+                </div>
+                <div className="Actions">
+                    <FavoriteBorderIcon />
+                    <RemoveRedEyeIcon
+                        // onclick , redirect to pet page , and send the object pet as props
+                        onClick={() => {
+                            console.log("clicked");
+                            Router.push(`/pets/${pet.id}`);
+                        }}
+                    />
+                </div>
+            </div>
         </div>
-        <div className="Actions">
-          <FavoriteBorderIcon />
-          <RemoveRedEyeIcon />
-        </div>
-      </div>
-    </div>
-  )
-}
+    );
+};
 
-export default PetCard
+export default PetCard;

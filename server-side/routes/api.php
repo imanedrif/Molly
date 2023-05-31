@@ -62,3 +62,6 @@ Route::post('like',[LikeController::class,'like'])->middleware('auth:sanctum');
 // reply routes
 Route::post('/replies',[CommentReplyController::class,'create'])->middleware('auth:sanctum');
 Route::get('replies/{reply}',[CommentReplyController::class,'show'])->middleware('auth:sanctum');
+
+
+Route::get('/image/{filename}',[PetController::class,'getImage']);
