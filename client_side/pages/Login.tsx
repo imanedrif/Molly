@@ -40,11 +40,11 @@ const Login = () => {
                 withCredentials: true,
             })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.status === 200) {
-                    localStorage.setItem("user", JSON.stringify(res.data.user));
-                    // console.log(JSON.parse(localStorage.getItem('user')))
-                    router.push("/pets");
+                    // console.log(res.data.user);
+                    localStorage.setItem("user", res.data.user);
+                    console.log(localStorage.getItem("user"));
                 }
             })
             .catch((err: any) => {

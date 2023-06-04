@@ -53,7 +53,9 @@ const DesktopHeader = () => {
                             <a>Services</a>
                             {showDropdown && (
                                 <div className="DropdownMenu">
-                                    <Link href="/pets">Service Adoption</Link>
+                                    <Link href="/AddAnnounce">
+                                        Service Adoption
+                                    </Link>
                                     <Link href="/sos">SOS Service</Link>
                                 </div>
                             )}
@@ -64,7 +66,7 @@ const DesktopHeader = () => {
                 )}
             </div>
             <div className="Actions">
-                {userData ? (
+                {/* {userData ? (
                     <UserButton
                         user={userData}
                         logOut={() => {
@@ -79,7 +81,10 @@ const DesktopHeader = () => {
                             <PrimaryButton text="Login" />
                         </Link>
                     </>
-                )}
+                )} */}
+                <Link href="/Login">
+                    <PrimaryButton text="Login" />
+                </Link>
             </div>
         </div>
     );
