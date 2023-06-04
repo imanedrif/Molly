@@ -12,7 +12,7 @@ const PetCard = (props: any) => {
         <div className="Pet">
             <Image
                 loader={() => props.pet.image}
-                src={props.pet?.image}
+                src={props.pet.image}
                 width={100}
                 height={100}
                 alt="pets image"
