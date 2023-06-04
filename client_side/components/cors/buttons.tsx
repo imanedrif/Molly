@@ -120,6 +120,8 @@ export function UserButton(props: any) {
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{
+                    width:'fit-content',
+                    borderRadius:'20px',
                     backgroundColor: "#297373",
                     "&:hover": {
                         backgroundColor: "#297373",

@@ -50,5 +50,12 @@
         top: 3rem;
       }
     }
+    .Actions{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      
+    }
 }
   

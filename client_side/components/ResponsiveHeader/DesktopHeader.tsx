@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { PrimaryButton, UserButton } from "../cors/buttons";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const DesktopHeader = () => {
     const router = useRouter();
@@ -67,6 +68,12 @@ const DesktopHeader = () => {
             </div>
             <div className="Actions">
                 {/* {userData ? (
+                    <>
+                    <FavoriteBorderIcon
+                    sx={{
+                        color:"#297373",
+                    }}
+                    />
                     <UserButton
                         user={userData}
                         logOut={() => {
@@ -74,7 +81,8 @@ const DesktopHeader = () => {
                             setUserData(null);
                             router.push("/");
                         }}
-                    />
+                        />
+                    </>
                 ) : (
                     <>
                         <Link href="/Login">

@@ -26,7 +26,6 @@ const Login = () => {
     const handleInput = (e: any) => {
         setLogininput({ ...loginInput, [e.target.name]: e.target.value });
     };
-
     const handleSubmit = (e: any) => {
         e.preventDefault();
         const data = {
@@ -36,15 +35,13 @@ const Login = () => {
         // delete user from local storage
         localStorage.removeItem("user");
         axios
-            .post("http://localhost:8000/api/login", data, {
-                withCredentials: true,
-            })
+            .post("http://localhost:8000/api/login", data)
             .then((res) => {
-                // console.log(res.data);
+                console.log(res.data);
                 if (res.status === 200) {
-                    // console.log(res.data.user);
-                    localStorage.setItem("user", res.data.user);
-                    console.log(localStorage.getItem("user"));
+                    localStorage.setItem("user", JSON.stringify(res.data.user));
+                    // console.log(JSON.parse(localStorage.getItem('user')))
+                    router.push("/pets");
                 }
             })
             .catch((err: any) => {
@@ -135,7 +132,10 @@ const Login = () => {
                                 </FormControl>
                                 <div className="buttom">
                                     <div className="text">
-                                        <p>If you dont't have an account yet</p>
+                                        <p>
+                                            If you dont&apos;t have an account
+                                            yet
+                                        </p>
                                         <Link href="/Register">
                                             <span>Register here</span>
                                         </Link>
