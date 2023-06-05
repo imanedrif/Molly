@@ -1,5 +1,6 @@
 import React from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useSelector } from "react-redux";
 
 export const PrimaryButton = (props: any) => {
     return <button className="Primary Button">{props.text}</button>;
@@ -94,7 +95,9 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 export function UserButton(props: any) {
-    const user = JSON.parse(props.user);
+    const user = useSelector((state: any) => state.Reducers.user);
+
+    // console.log(user);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -120,8 +123,8 @@ export function UserButton(props: any) {
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{
-                    width:'fit-content',
-                    borderRadius:'20px',
+                    width: "fit-content",
+                    borderRadius: "20px",
                     backgroundColor: "#297373",
                     "&:hover": {
                         backgroundColor: "#297373",

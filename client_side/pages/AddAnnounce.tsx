@@ -10,9 +10,15 @@ import { PrimaryButton, PrimaryButtonIcon } from "@/components/cors/buttons";
 import AddIcon from "@mui/icons-material/Add";
 import { Input } from "@nextui-org/react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { NextPage } from "next";
+import { useSession } from "next-auth/react"
 
-const AddAnnounce = () => {
+const AddAnnounce: NextPage = () => {
+    const { data: session, status } = useSession()
+    console.log(session)
     const router = useRouter();
+    const user = useSelector((state: any) => state.Reducers.user);
     const label = { inputProps: { "aria-label": "Checkbox demo" } };
     const { cities } = require("morocco-cities");
     const category = [
@@ -25,7 +31,7 @@ const AddAnnounce = () => {
 
     const [isAuth, setIsAuth] = useState(false);
 
-    const [petdata, setPetdata] = useState({
+    const [petdata, setPetdata]: any = useState({
         title: "",
         name: "",
         category: "",
@@ -43,30 +49,31 @@ const AddAnnounce = () => {
         setPetdata({ ...petdata, [e.target.name]: e.target.value });
     };
 
-    const handleAddAnnounce = async (e: any) => {
+    const handleAddAnnounce = (e: React.FormEvent) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("title", petdata.title);
-        formData.append("category", petdata.category);
-        formData.append("city", petdata.city);
-        formData.append("gender", petdata.gender);
-        formData.append("age", petdata.age);
-        formData.append("description", petdata.description);
-        formData.append("image", petdata.image);
-
-        await axios
-            .post("http://127.0.0.1:8000/api/pets", {
-                body: formData,
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Accept: "application/json",
-                    "X-CSRF-TOKEN": "YOUR_CSRF_TOKEN_HERE", // Replace with the actual CSRF token
-                },
-                withCredentials: true,
-            })
+        let formData: any = new FormData()
+        petdata.age = 2;
+        formData = petdata;
+        axios
+            .post("http://localhost:8000/api/pets", formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        "Accept": "application/json",
+                        "Authorization": `Bearer ${user.token}`,
+                    },
+                    // withCredentials: true,
+                })
             .then((res) => {
                 console.log(res.data);
-            });
+            })
+            .catch((err) => {
+                console.log(err);
+                // console.log(petdata);
+                console.log("Form data:", formData);
+            })
+            ;
+
     };
 
     return (

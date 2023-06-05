@@ -18,8 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react"
 
 const Login = () => {
+    const { data: session, status } = useSession()
     const router = useRouter();
-    const { data } = useSession()
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -62,10 +62,10 @@ const Login = () => {
     //         });
     // };
     const handleSubmit = async (e: any) => {
-        // signOut();
+
         e.preventDefault();
-        if (data) {
-            console.log("data", data)
+        if (session) {
+            console.log(session)
         } else {
 
             console.log(loginInput);
@@ -164,15 +164,6 @@ const Login = () => {
                                     <div className="button">
                                         <SecondaryButton text="Login" />
                                     </div>
-                                    {
-                                        data && (
-                                            <div>
-                                                <p>LogOut</p>
-                                                <button onClick={() => signOut()}>LogOut</button>
-                                            </div>
-                                        )
-
-                                    }
                                 </div>
                             </div>
                         </form>

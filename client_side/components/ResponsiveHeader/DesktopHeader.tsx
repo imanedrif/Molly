@@ -4,20 +4,13 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { PrimaryButton, UserButton } from "../cors/buttons";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useSelector, useDispatch } from "react-redux";
 
 const DesktopHeader = () => {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
-    const [userData, setUserData]: any = useState(null);
-
-    useEffect(() => {
-        const user = localStorage.getItem("user");
-        if (user) {
-            console.log(user);
-            setUserData(user);
-        }
-    }, []);
-
+    const user = useSelector((state: any) => state.Reducers.user);
+    const dispatch = useDispatch();
     const handleMouseEnter = () => {
         setShowDropdown(true);
     };
@@ -67,20 +60,22 @@ const DesktopHeader = () => {
                 )}
             </div>
             <div className="Actions">
-                {/* {userData ? (
+                {user.name ? (
                     <>
-                    <FavoriteBorderIcon
-                    sx={{
-                        color:"#297373",
-                    }}
-                    />
-                    <UserButton
-                        user={userData}
-                        logOut={() => {
-                            localStorage.removeItem("user");
-                            setUserData(null);
-                            router.push("/");
-                        }}
+                        <Link href="/Wishlist">
+                            <FavoriteBorderIcon
+                                sx={{
+                                    color: "#297373",
+                                }}
+                            />
+                        </Link>
+                        <UserButton
+                            user={user}
+                            logOut={() => {
+                                dispatch({
+                                    type: "DELETE_USER_INFOS",
+                                });
+                            }}
                         />
                     </>
                 ) : (
@@ -89,10 +84,7 @@ const DesktopHeader = () => {
                             <PrimaryButton text="Login" />
                         </Link>
                     </>
-                )} */}
-                <Link href="/Login">
-                    <PrimaryButton text="Login" />
-                </Link>
+                )}
             </div>
         </div>
     );
