@@ -41,6 +41,9 @@ const authOptions: NextAuthOptions = {
             session.user = token;
             return session;
         },
+        async redirect({ url, baseUrl }) {
+            return baseUrl;
+        },
     },
 
     pages: {
@@ -48,7 +51,6 @@ const authOptions: NextAuthOptions = {
     },
     session: {
         strategy: "jwt",
-        jwt: true,
         maxAge: 30 * 24 * 60 * 60,
         updateAge: undefined,
     },
