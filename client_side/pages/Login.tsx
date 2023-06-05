@@ -69,12 +69,23 @@ const Login = () => {
         } else {
 
             console.log(loginInput);
-            const res = await signIn("credentials", {
+            const res: any = await signIn("credentials", {
                 username: loginInput.email,
                 password: loginInput.password,
                 redirect: false,
             });
-            console.log("res from component", res);
+            if (res.error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Credentials are not correct!",
+                });
+            }
+            if (res.ok) {
+                router.push("/pets");
+            }
+            console.log(res);
+
         }
     };
     return (
@@ -164,15 +175,6 @@ const Login = () => {
                                     <div className="button">
                                         <SecondaryButton text="Login" />
                                     </div>
-                                    {
-                                        data && (
-                                            <div>
-                                                <p>LogOut</p>
-                                                <button onClick={() => signOut()}>LogOut</button>
-                                            </div>
-                                        )
-
-                                    }
                                 </div>
                             </div>
                         </form>

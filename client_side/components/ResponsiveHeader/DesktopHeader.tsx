@@ -4,13 +4,12 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { PrimaryButton, UserButton } from "../cors/buttons";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useSelector, useDispatch } from "react-redux";
+import { useSession, signOut } from "next-auth/react";
 
 const DesktopHeader = () => {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
-    const user = useSelector((state: any) => state.Reducers.user);
-    const dispatch = useDispatch();
+    const { data } = useSession();
     const handleMouseEnter = () => {
         setShowDropdown(true);
     };
@@ -60,7 +59,7 @@ const DesktopHeader = () => {
                 )}
             </div>
             <div className="Actions">
-                {user.name ? (
+                {data ? (
                     <>
                         <Link href="/Wishlist">
                             <FavoriteBorderIcon
@@ -70,17 +69,15 @@ const DesktopHeader = () => {
                             />
                         </Link>
                         <UserButton
-                            user={user}
+                            user={data.user}
                             logOut={() => {
-                                dispatch({
-                                    type: "DELETE_USER_INFOS",
-                                });
+                                signOut();
                             }}
                         />
                     </>
                 ) : (
                     <>
-                        <Link href="/Login">
+                        <Link href="/login">
                             <PrimaryButton text="Login" />
                         </Link>
                     </>

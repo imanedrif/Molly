@@ -12,13 +12,12 @@ import { Input } from "@nextui-org/react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { NextPage } from "next";
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react";
+import Swal from "sweetalert2";
 
 const AddAnnounce: NextPage = () => {
-    const { data: session, status } = useSession()
-    console.log(session)
+    const { data } = useSession();
     const router = useRouter();
-    const user = useSelector((state: any) => state.Reducers.user);
     const label = { inputProps: { "aria-label": "Checkbox demo" } };
     const { cities } = require("morocco-cities");
     const category = [
@@ -60,20 +59,25 @@ const AddAnnounce: NextPage = () => {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "Accept": "application/json",
-                        "Authorization": `Bearer ${user.token}`,
+                        "Authorization": `Bearer ${data?.user.token}`,
                     },
-                    // withCredentials: true,
                 })
             .then((res) => {
                 console.log(res.data);
+                if (res.status === 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Your announcement has been posted!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
             })
             .catch((err) => {
                 console.log(err);
-                // console.log(petdata);
                 console.log("Form data:", formData);
             })
             ;
-
     };
 
     return (

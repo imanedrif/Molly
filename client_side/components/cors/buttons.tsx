@@ -95,8 +95,6 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 export function UserButton(props: any) {
-    const user = useSelector((state: any) => state.Reducers.user);
-
     // console.log(user);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -131,7 +129,7 @@ export function UserButton(props: any) {
                     },
                 }}
             >
-                {user.name}
+                {props.user.name}
             </Button>
             <StyledMenu
                 id="demo-customized-menu"

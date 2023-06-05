@@ -17,34 +17,40 @@ const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials, req) {
-                const res = await axios.post(
-                    "http://127.0.0.1:8000/api/login",
-                    {
+                const res = await axios
+                    .post("http://127.0.0.1:8000/api/login", {
                         email: credentials?.username,
                         password: credentials?.password,
-                    }
-                );
-                if (res.status === 200) {
-                    const { id, name, phoneNumber, email, token } = res.data;
-                    return {
-                        id,
-                        name,
-                        phoneNumber,
-                        email,
-                        token,
-                    };
-                } else {
-                    return null;
-                }
+                    })
+                    .then((res) => {
+                        return res.data;
+                    })
+                    .catch((err) => {
+                        return null;
+                    });
+                return res;
             },
         }),
     ],
+
+    callbacks: {
+        async jwt({ token, user }) {
+            return { ...token, ...user };
+        },
+        async session({ session, token, user }) {
+            session.user = token;
+            return session;
+        },
+    },
+
     pages: {
         signIn: "/login",
     },
     session: {
         strategy: "jwt",
+        jwt: true,
         maxAge: 30 * 24 * 60 * 60,
+        updateAge: undefined,
     },
 };
 
