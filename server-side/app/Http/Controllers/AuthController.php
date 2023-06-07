@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user->password = bcrypt($input['password']);
         $user->phoneNumber = $input['phoneNumber'];
         $user->save();
-        $token = $user->createToken('auth_token',['user'])->plainTextToken;
+        $token = $user->createToken('authToken')->accessToken;
         return response()->json(['user'=>$user ,'Auth_token'=>$token], 200);
     }
 
@@ -47,7 +47,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($input)) {
             $user = User::where('email', $input['email'])->first();
-            $user['token'] = $user->createToken('auth_token', ['user'])->plainTextToken;
+            $user['token'] = $user->createToken('authToken')->accessToken;;
             return response()->json( $user, 200);
         }
 

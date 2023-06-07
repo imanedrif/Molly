@@ -14,9 +14,11 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
     const router = useRouter();
+    const { data: session, status } = useSession()
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [loginInput, setLogininput] = useState({
@@ -27,36 +29,27 @@ const Login = () => {
         setLogininput({ ...loginInput, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         const data = {
             email: loginInput.email,
             password: loginInput.password,
-        };
-        // delete user from local storage
-        localStorage.removeItem("user");
-        axios
-            .post("http://localhost:8000/api/login", data, {
-                withCredentials: true,
-            })
-            .then((res) => {
-                console.log(res.data);
-                if (res.status === 200) {
-                    localStorage.setItem("user", JSON.stringify(res.data.user));
-                    // console.log(JSON.parse(localStorage.getItem('user')))
-                    router.push("/pets");
-                }
-            })
-            .catch((err: any) => {
-                console.log(err);
-                if (err.response.status === 401) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something is wrong!",
-                    });
-                }
-            });
+          };
+          const res:any = await signIn('credentials', {
+            redirect: false,
+            username: data.email,
+            password: data.password,
+          });
+          console.log(res)
+        //   if (res?.status===401) {
+        //     Swal.fire({
+        //       icon: 'error',
+        //       title: 'Oops...',
+        //       text: 'Something is wrong!',
+        //     });
+        //   } else {
+        //     router.push('/pets');
+        //   }
     };
 
     return (

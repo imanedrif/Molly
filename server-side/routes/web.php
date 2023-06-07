@@ -43,3 +43,7 @@ Route::get('storage/{filename}', function ($filename)
 
     return $response;
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

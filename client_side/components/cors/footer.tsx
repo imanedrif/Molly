@@ -24,7 +24,7 @@ const Footer = () => {
             <p>FAQ</p>
           </div>
         </div>
-        <div className='right'>
+        <div className='right-footer'>
           <h4>Contact us</h4>
           <TextField
             size="small"

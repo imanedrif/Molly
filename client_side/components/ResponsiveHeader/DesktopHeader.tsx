@@ -4,19 +4,12 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { PrimaryButton, UserButton } from "../cors/buttons";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useSession } from "next-auth/react";
 
 const DesktopHeader = () => {
     const router = useRouter();
+    const { data: session, status } = useSession()
     const [showDropdown, setShowDropdown] = useState(false);
-    const [userData, setUserData]: any = useState(null);
-
-    useEffect(() => {
-        const user = localStorage.getItem("user");
-        if (user) {
-            console.log(user);
-            setUserData(user);
-        }
-    }, []);
 
     const handleMouseEnter = () => {
         setShowDropdown(true);
@@ -65,7 +58,7 @@ const DesktopHeader = () => {
                 )}
             </div>
             <div className="Actions">
-                {userData ? (
+                {session ? (
                     <>
                     <FavoriteBorderIcon
                     sx={{
@@ -73,10 +66,9 @@ const DesktopHeader = () => {
                     }}
                     />
                     <UserButton
-                        user={userData}
+                        user={session.user?.name}
                         logOut={() => {
                             localStorage.removeItem("user");
-                            setUserData(null);
                             router.push("/");
                         }}
                         />
