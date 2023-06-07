@@ -174,29 +174,6 @@ const Register = () => {
                       width: '35%',
                     }}
                   />
-                  <TextField
-                    size="small"
-                    label="repeat password"
-                    name='repeatPassword'
-                    // value={registerInput.repeatpassword}
-                    // onChange={handleInput}
-                    type={showRepeatPassword ? 'text' : 'password'}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            onClick={handleClickShowRepeatPassword}
-                            edge="end"
-                          >
-                            {showRepeatPassword ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      width: '35%',
-                    }}
-                  />
                 </FormControl>
                 <div className='buttom'>
                   <div className="text">

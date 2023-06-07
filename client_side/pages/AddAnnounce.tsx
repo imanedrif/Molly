@@ -40,7 +40,7 @@ const AddAnnounce: NextPage = () => {
         description: "",
         image: "",
     });
-
+    
     const handleImage = (e: any) => {
         setPetdata({ ...petdata, image: e.target.files[0] });
     };
@@ -50,8 +50,25 @@ const AddAnnounce: NextPage = () => {
 
     const handleAddAnnounce = (e: React.FormEvent) => {
         e.preventDefault();
+        const currentdate = new Date;
+        const entredDate = new Date(petdata.age)
+
+        const ageInMsec = currentdate.getTime() - entredDate.getTime();
+        console.log(ageInMsec)
+        const years = Math.floor(ageInMsec / (1000 * 60 * 60 * 24 * 365));
+        const months = Math.floor(ageInMsec / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor(ageInMsec / (1000 * 60 * 60 * 24));
+
+        let age;
+        if (years > 0) {
+            age = `${years} ${years === 1 ? 'year' : 'years'}`;
+        } else if (months > 0) {
+            age = `${months} ${months === 1 ? 'month' : 'months'}`;
+        } else {
+            age = `${days} ${days === 1 ? 'day' : 'days'}`;
+        }
+        petdata.age = age
         let formData: any = new FormData()
-        petdata.age = 2;
         formData = petdata;
         axios
             .post("http://localhost:8000/api/pets", formData,
@@ -71,6 +88,7 @@ const AddAnnounce: NextPage = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    router.push('/pets')
                 }
             })
             .catch((err) => {

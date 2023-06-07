@@ -78,7 +78,7 @@ const DesktopHeader = () => {
                     </>
                 ) : (
                     <>
-                        <Link href="/login">
+                        <Link href="/Login">
                             <PrimaryButton text="Login" />
                         </Link>
                     </>

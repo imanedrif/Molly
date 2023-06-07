@@ -1,13 +1,71 @@
 import React, { useState, useEffect } from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import axios from "axios";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { BorderAllOutlined } from "@mui/icons-material";
+import { useSession } from "next-auth/react";
+import { Alert, Slide, Snackbar } from "@mui/material";
 // import snth from '../../../../server-side/storage/app/public/'
 const PetCard = (props: any) => {
     const { pet } = props;
     console.log(props);
     const Router = useRouter();
+    const [isfav,setIsfav]=useState(false)
+    const { data: session,data } = useSession()
+    const [open, setOpen] = React.useState(false);  
+    const handleClick = () => {
+        setOpen(true);
+      };
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+    
+    const handlefav = () => {
+        setIsfav((prevIsfav) => !prevIsfav);
+        if (!isfav) {
+          axios
+            .post(
+              'http://localhost:8000/api/wishlists',
+              { pet_id: pet.id },
+              {
+                headers: {
+                  Accept: 'application/json',
+                  Authorization: `Bearer ${data?.user.token}`,
+                },
+                withCredentials: true,
+              }
+            )
+            .then((res) => {
+              console.log('Added to wishlist:', res.data);
+            })
+            .catch((error) => {
+              console.error('Failed to add to wishlist:', error);
+            });
+        } else {
+          axios
+            .delete(`http://localhost:8000/api/wishlists/${pet.id}`, {
+              headers: {
+                Authorization: `Bearer ${data?.user.token}`,
+              },
+              withCredentials: true,
+            })
+            .then((res) => {
+              console.log('removed from wishlist', res.data);
+            })
+            .catch((err) => {
+              console.error('Failed to remove from wishlist', err);
+            });
+        }
+      };
+      
+
     return (
         <div className="Pet">
             <Image
@@ -34,7 +92,24 @@ const PetCard = (props: any) => {
                     </p>
                 </div>
                 <div className="Actions">
-                    <FavoriteBorderIcon />
+                    {isfav && session ?(
+                        <FavoriteIcon onClick={handlefav} style={{color:'red'}}/>
+                    ):(
+                        <>
+                        <FavoriteBorderIcon onClick={() => { handlefav(); handleClick(); }} />
+                        <Snackbar 
+                        open={open} 
+                        autoHideDuration={3000} 
+                        onClose={handleClose} 
+                        TransitionComponent={(props)=><Slide {...props} direction="right"/>}
+                        transitionDuration={600}
+                        >
+                            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                            You must be connected !
+                            </Alert>
+                        </Snackbar>
+                        </>
+                    )}
                     <RemoveRedEyeIcon
                         // onclick , redirect to pet page , and send the object pet as props
                         onClick={() => {

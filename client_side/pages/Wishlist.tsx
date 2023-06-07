@@ -7,8 +7,37 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PaginationComponent from "@/components/pets/PaginationComponent";
 import Footer from "@/components/cors/Footer";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Wishlist = () => {
+    const {data:session,data}=useSession()
+    const [pets, setPets] = React.useState([] as any);
+    const router = useRouter()
+    useEffect(()=>{
+        if(session){
+            axios
+            .get("http://localhost:8000/api/wishlists", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Authorization": `Bearer ${data?.user.token}`,
+                },
+            })
+            .then((response) => {
+                setPets(response.data.data);
+                console.log(response.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        else{
+            router.push('/Login')
+        }
+    },[])
+
     const settings = {
         dots: true,
         infinite: true,
@@ -24,17 +53,20 @@ const Wishlist = () => {
             <div className="wishlist-content">
                 <div className="left">
                     <div className="Wishlist-slide">
+                    {pets.length > 0 ? (
                         <Slider {...settings}>
-                            {/* <div><PetCard/></div>
-                <div><PetCard/></div>
-                <div><PetCard/></div>
-                <div><PetCard/></div> */}
+                            {pets.map((pet: any) => (
+                            <PetCard key={pet.id} pet={pet} />
+                            ))}
                         </Slider>
+                    ) : (
+                        <p>No pets found in the wishlist.</p>
+                    )}
                     </div>
                 </div>
-                <div className="right">
+                {/* <div className="right">
                     <UserCard />
-                </div>
+                </div> */}
             </div>
             <Footer />
         </div>
