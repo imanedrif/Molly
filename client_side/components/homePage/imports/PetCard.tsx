@@ -30,7 +30,7 @@ const PetCard = (props: any) => {
                         <br />
                     </div>
                     <p className="Info">
-                        City : <span className="C3">{props.city}</span>
+                        City : <span className="C3">{pet?.city}</span>
                     </p>
                 </div>
                 <div className="Actions">

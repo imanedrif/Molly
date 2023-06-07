@@ -20,8 +20,8 @@ class Wishlist extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function Pets(): HasMany
+    public function Pets(): BelongsTo
     {
-        return $this->hasMany(Pet::class);
+        return $this->BelongsTo(Pet::class);
     }
 }

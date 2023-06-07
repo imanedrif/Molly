@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { PrimaryButton, UserButton } from "../cors/buttons";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useSession } from "next-auth/react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useSession, signOut } from "next-auth/react";
 
 const DesktopHeader = () => {
     const router = useRouter();
     const { data: session, status } = useSession()
     const [showDropdown, setShowDropdown] = useState(false);
-
+    const { data } = useSession();
     const handleMouseEnter = () => {
         setShowDropdown(true);
     };
@@ -47,7 +47,9 @@ const DesktopHeader = () => {
                             <a>Services</a>
                             {showDropdown && (
                                 <div className="DropdownMenu">
-                                    <Link href="/pets">Service Adoption</Link>
+                                    <Link href="/AddAnnounce">
+                                        Service Adoption
+                                    </Link>
                                     <Link href="/sos">SOS Service</Link>
                                 </div>
                             )}
@@ -58,24 +60,25 @@ const DesktopHeader = () => {
                 )}
             </div>
             <div className="Actions">
-                {session ? (
+                {data ? (
                     <>
-                    <FavoriteBorderIcon
-                    sx={{
-                        color:"#297373",
-                    }}
-                    />
-                    <UserButton
-                        user={session.user?.name}
-                        logOut={() => {
-                            localStorage.removeItem("user");
-                            router.push("/");
-                        }}
+                        <Link href="/Wishlist">
+                            <FavoriteBorderIcon
+                                sx={{
+                                    color: "#297373",
+                                }}
+                            />
+                        </Link>
+                        <UserButton
+                            user={data.user}
+                            logOut={() => {
+                                signOut();
+                            }}
                         />
                     </>
                 ) : (
                     <>
-                        <Link href="/Login">
+                        <Link href="/login">
                             <PrimaryButton text="Login" />
                         </Link>
                     </>

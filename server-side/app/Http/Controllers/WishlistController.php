@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,12 +12,19 @@ class WishlistController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         $wishlist = $user->wishlist;
 
+        if ($wishlist) {
+            $petIds = $wishlist->pluck('pet_id')->toArray();
+            $pets = Pet::whereIn('id', $petIds)->get();
+        } else {
+            $pets = [];
+        }
+
         return response()->json([
-            'data' => $wishlist
+            'data' => $pets
         ], 200);
+
     }
 
     public function store(Request $request)

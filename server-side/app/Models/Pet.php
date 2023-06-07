@@ -34,4 +34,5 @@ class Pet extends Model
         return $this->hasMany(Like::class);
     }
 
+
 }

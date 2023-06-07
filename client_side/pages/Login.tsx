@@ -14,11 +14,13 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { signIn, useSession } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const Login = () => {
     const router = useRouter();
-    const { data: session, status } = useSession()
+    const { data } = useSession()
+    const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [loginInput, setLogininput] = useState({
@@ -28,30 +30,64 @@ const Login = () => {
     const handleInput = (e: any) => {
         setLogininput({ ...loginInput, [e.target.name]: e.target.value });
     };
-
+    // const handleSubmit = (e: any) => {
+    //     e.preventDefault();
+    //     const data = {
+    //         email: loginInput.email,
+    //         password: loginInput.password,
+    //     };
+    //     // delete user from local storage
+    //     localStorage.removeItem("user");
+    //     axios
+    //         .post("http://localhost:8000/api/login", data)
+    //         .then((res) => {
+    //             console.log(res.data);
+    //             if (res.status === 200) {
+    //                 dispatch({
+    //                     type: "ADD_USER_INFOS",
+    //                     payload: res.data,
+    //                 });
+    //                 router.push("/");
+    //             }
+    //         })
+    //         .catch((err: any) => {
+    //             console.log(err);
+    //             if (err.response.status === 401) {
+    //                 Swal.fire({
+    //                     icon: "error",
+    //                     title: "Oops...",
+    //                     text: "Something is wrong!",
+    //                 });
+    //             }
+    //         });
+    // };
     const handleSubmit = async (e: any) => {
+        // signOut();
         e.preventDefault();
-        const data = {
-            email: loginInput.email,
-            password: loginInput.password,
-          };
-          const res:any = await signIn('credentials', {
-            redirect: false,
-            username: data.email,
-            password: data.password,
-          });
-          console.log(res)
-        //   if (res?.status===401) {
-        //     Swal.fire({
-        //       icon: 'error',
-        //       title: 'Oops...',
-        //       text: 'Something is wrong!',
-        //     });
-        //   } else {
-        //     router.push('/pets');
-        //   }
-    };
+        if (data) {
+            console.log("data", data)
+        } else {
 
+            console.log(loginInput);
+            const res: any = await signIn("credentials", {
+                username: loginInput.email,
+                password: loginInput.password,
+                redirect: false,
+            });
+            if (res.error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Credentials are not correct!",
+                });
+            }
+            if (res.ok) {
+                router.push("/pets");
+            }
+            console.log(res);
+
+        }
+    };
     return (
         <div className="login">
             <div className="Shape1"></div>
@@ -128,7 +164,10 @@ const Login = () => {
                                 </FormControl>
                                 <div className="buttom">
                                     <div className="text">
-                                        <p>If you dont't have an account yet</p>
+                                        <p>
+                                            If you dont&apos;t have an account
+                                            yet
+                                        </p>
                                         <Link href="/Register">
                                             <span>Register here</span>
                                         </Link>
