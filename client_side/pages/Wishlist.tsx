@@ -64,9 +64,6 @@ const Wishlist = () => {
                     )}
                     </div>
                 </div>
-                {/* <div className="right">
-                    <UserCard />
-                </div> */}
             </div>
             <Footer />
         </div>

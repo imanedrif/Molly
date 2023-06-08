@@ -30,37 +30,6 @@ const Login = () => {
     const handleInput = (e: any) => {
         setLogininput({ ...loginInput, [e.target.name]: e.target.value });
     };
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         email: loginInput.email,
-    //         password: loginInput.password,
-    //     };
-    //     // delete user from local storage
-    //     localStorage.removeItem("user");
-    //     axios
-    //         .post("http://localhost:8000/api/login", data)
-    //         .then((res) => {
-    //             console.log(res.data);
-    //             if (res.status === 200) {
-    //                 dispatch({
-    //                     type: "ADD_USER_INFOS",
-    //                     payload: res.data,
-    //                 });
-    //                 router.push("/");
-    //             }
-    //         })
-    //         .catch((err: any) => {
-    //             console.log(err);
-    //             if (err.response.status === 401) {
-    //                 Swal.fire({
-    //                     icon: "error",
-    //                     title: "Oops...",
-    //                     text: "Something is wrong!",
-    //                 });
-    //             }
-    //         });
-    // };
     const handleSubmit = async (e: any) => {
         // signOut();
         e.preventDefault();

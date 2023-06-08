@@ -58,4 +58,122 @@
       
     }
 }
+.dflex{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+// .mobile-container{
+//   position:relative;
+//   display: flex;  
+//   width:100%;
+//   height:100vh;  
+//   flex-direction: column;
+//   header{
+//     @extend .dflex;
+//     justify-content: flex-end;
+//     width:100%;
+//     height:58px;
+//     border-bottom:1px solid #bdbdbd;
+//     padding:0 50px;
+//     .menu{
+//       width:58px;
+//       height:58px;
+//       @extend .dflex;
+//       cursor:pointer;
+//     }
+//   }
+//   .menu_container{
+//     position:absolute;
+//     width:100%;
+//     height:100%;
+//     background-color:#000;
+//     color:#fff;
+//     @extend .dflex;
+//     flex-direction: column;
+//     a{
+//       display:inline-flex;
+//       color:#fff;
+//       text-decoration: none;
+//       height:80px;
+//       overflow: hidden;
+//       font-size:2vw;
+//       @media(max-width:768px){
+//         font-size:22px;
+//       }
+//       text-transform: uppercase;
+//       +a{
+//         margin-top:1vw;
+//       }
+//     }
   
+//     .btn_close{
+//       @extend .dflex;
+//       width:58px;
+//       height:58px;
+//       background-color:#fff;
+//       color:#000;
+//       border-radius: 58px;
+//       position:absolute;
+//       top:20px;
+//       right:20px;
+//       z-index:2;
+//       cursor:pointer;
+//       font-size:18px;
+//     }
+//   }
+// }
+
+.mobile-container{
+  position: relative;
+  padding: 0.5% 2%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  .icon{
+    width: 6%;
+    height: 6%;
+  }
+  .menu_container{
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width:100%;
+      // height:100%;
+      background-color:$darkC1;
+      color:#fff;
+      @extend .dflex;
+      flex-direction: column;
+      a{
+        display:inline-flex;
+        color:#fff;
+        text-decoration: none;
+        height:80px;
+        overflow: hidden;
+        font-size:2.4rem;
+        text-transform: uppercase;
+        margin-top:1vw;
+        &:hover {
+          color: rgba(232, 232, 232, 0.906);
+          transition: color 0.5s linear;
+        }
+    }
+    .btn_close{
+      @extend .dflex;
+      width:5rem;
+      height:5rem;
+      background-color:#fff;
+      color:#000;
+      border-radius: 58px;
+      position:absolute;
+      top:2%;
+      right:5%;
+      z-index:2;
+      cursor:pointer;
+      font-size:2rem;
+    }
+  }
+}
