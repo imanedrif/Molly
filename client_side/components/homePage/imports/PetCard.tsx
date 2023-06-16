@@ -7,7 +7,7 @@ import axios from "axios";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { BorderAllOutlined } from "@mui/icons-material";
 import { useSession } from "next-auth/react";
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { Checkbox } from "@mui/material";
 // import snth from '../../../../server-side/storage/app/public/'
 const PetCard = (props: any) => {
   const { pet } = props;
@@ -99,7 +99,6 @@ const PetCard = (props: any) => {
       },
     }).then((res) => {
       console.log(res.data)
-      // props.refresh();
       setIsfav(false)
     }).catch((err) => {
       console.log(err)
@@ -112,7 +111,6 @@ const PetCard = (props: any) => {
       },
     }).then((res) => {
       console.log(res.data)
-      // props.refresh();
       setIsfav(true)
     }
     ).catch((err) => {
@@ -165,9 +163,24 @@ const PetCard = (props: any) => {
               </Snackbar>
             </>
           )} */}
-          {
+          {/* {
             isfav ? <FavoriteIcon onClick={removeFav} style={{ color: 'red' }} /> : <FavoriteBorderIcon onClick={addFav} />
-          }
+          } */}
+          <Checkbox
+            icon={<FavoriteBorderIcon style={{ color: 'red' }} />}
+            checkedIcon={<FavoriteIcon style={{ color: 'red' }} />}
+            checked={isfav}
+            onClick={() => {
+              if (isfav) {
+                setIsfav(false)
+                removeFav()
+              }
+              else {
+                setIsfav(true)
+                addFav()
+              }
+            }}
+          />
           <RemoveRedEyeIcon
             onClick={() => {
               console.log("clicked");
