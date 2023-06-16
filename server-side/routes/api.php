@@ -44,6 +44,7 @@ Route::delete('pets/{id}', [PetController::class, 'destroy'])->middleware('auth:
 // wishlist routes
 Route::get('wishlists', [WishlistController::class, 'index'])->middleware('auth:api');
 Route::post('wishlists', [WishlistController::class, 'store'])->middleware('auth:api');
+Route::get('wishlists/{id}', [WishlistController::class, 'show'])->middleware('auth:api');
 Route::delete('wishlists/{id}', [WishlistController::class, 'destroy'])->middleware('auth:api');
 
 // postSOS routes
@@ -60,8 +61,8 @@ Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
 Route::post('like', [LikeController::class, 'like'])->middleware('auth:api');
 
 // reply routes
-Route::post('/replies',[CommentReplyController::class,'create'])->middleware('auth:sanctum');
-Route::get('replies/{reply}',[CommentReplyController::class,'show'])->middleware('auth:sanctum');
+Route::post('/replies', [CommentReplyController::class, 'create'])->middleware('auth:sanctum');
+Route::get('replies/{reply}', [CommentReplyController::class, 'show'])->middleware('auth:sanctum');
 
 
 Route::get('/image/{filename}', [PetController::class, 'getImage']);

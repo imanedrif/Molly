@@ -28,7 +28,6 @@ class WishlistController extends Controller
         return response()->json([
             'data' => $pets
         ], 200);
-
     }
 
     public function store(Request $request)
@@ -45,17 +44,31 @@ class WishlistController extends Controller
         ], 200);
     }
 
-    public function destroy($id){
-        $wishlist = Wishlist::findOrFail($id);
-        if($wishlist->user_id === Auth::id()){
+    public function destroy($id)
+    {
+        // $wishlist = Wishlist::findOrFail($id);
+        $wishlist = Wishlist::where('pet_id', $id)->first();
+        if ($wishlist->user_id === Auth::id()) {
             $wishlist->delete();
             return response()->json([
-                'message'=>'pet removed from wishlist'
+                'message' => 'pet removed from wishlist'
             ], 200);
-        }
-        else{
+        } else {
             return response()->json([
-                'error'=>'Unauthorized'
+                'error' => 'Unauthorized'
+            ], 401);
+        }
+    }
+    public function show($id)
+    {
+        $user = Auth::user();
+        // get the wishlist that belongs to the user and has the pet_id
+        $wishlist = Wishlist::where('user_id', $user->id)->where('pet_id', $id)->first();
+        if ($wishlist) {
+            return response()->json($wishlist, 200);
+        } else {
+            return response()->json([
+                'error' => 'Unauthorized'
             ], 401);
         }
     }
