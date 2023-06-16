@@ -23,7 +23,7 @@ const PetDetails = () => {
         // setId(Router.query.id);
         const { id } = Router.query;
         console.log(Router.query);
-        fetch(`http://localhost:8000/api/pets/${id}`)
+        fetch(`http://127.0.0.1:8000/api/pets/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -31,7 +31,7 @@ const PetDetails = () => {
             })
             .catch((err) => console.log(err));
     }, []);
-    const src = `http://localhost:8000/api/image/${petDetails.image}`;
+    const src = `http://127.0.0.1:8000/api/image/${petDetails.image}`;
     return (
         <>
             <Header />

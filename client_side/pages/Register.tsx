@@ -34,7 +34,7 @@ const Register = () => {
   useEffect(() => {
     const getCsrfToken = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true });
+        const response = await axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true });
         console.log('CSRF token:', response.data);
       } catch (error) {
         console.error('Failed to fetch CSRF token:', error);
@@ -55,7 +55,7 @@ const Register = () => {
 
     // axios.get('http://localhost:8000/sanctum/csrf-cookie').then( ()=>{
 
-    axios.post('http://localhost:8000/api/register',data,{
+    axios.post('http://127.0.0.1:8000/api/register',data,{
       headers:{
         'Accept' : 'application/json'
       },

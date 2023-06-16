@@ -12,13 +12,19 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const Wishlist = () => {
+    const [isInList,setIsInList] = useState(true)
     const {data:session,data}=useSession()
-    const [pets, setPets] = React.useState([] as any);
+    const [pets, setPets] = useState([]);
     const router = useRouter()
+    const [isRefresh,setIsRefresh] = useState(false);
+
+    const RefreshData = ()=>{
+        setIsRefresh(!isRefresh)
+    }
     useEffect(()=>{
         if(session){
             axios
-            .get("http://localhost:8000/api/wishlists", {
+            .get("http://127.0.0.1:8000/api/wishlists", {
                 headers: {
                     "Content-Type": "application/json",
                     "X-Requested-With": "XMLHttpRequest",
@@ -36,7 +42,7 @@ const Wishlist = () => {
         else{
             router.push('/Login')
         }
-    },[])
+    },[isRefresh])
 
     const settings = {
         dots: true,
@@ -51,19 +57,15 @@ const Wishlist = () => {
             <Header />
             <h1>Wishlist</h1>
             <div className="wishlist-content">
-                <div className="left">
                     <div className="Wishlist-slide">
-                    {pets.length > 0 ? (
-                        <Slider {...settings}>
-                            {pets.map((pet: any) => (
-                            <PetCard key={pet.id} pet={pet} />
-                            ))}
-                        </Slider>
-                    ) : (
-                        <p>No pets found in the wishlist.</p>
-                    )}
+                    {pets.map((pet: any, index: any) => {
+                    return (
+                        <div>
+                            <PetCard pet={pet} />
+                        </div>
+                    );
+                    })}
                     </div>
-                </div>
             </div>
             <Footer />
         </div>

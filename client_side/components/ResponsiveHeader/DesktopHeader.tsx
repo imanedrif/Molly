@@ -74,6 +74,9 @@ const DesktopHeader = () => {
                             logOut={() => {
                                 signOut();
                             }}
+                            profile={()=>{
+                                router.push(`/${data.user.name}`)
+                            }}
                         />
                     </>
                 ) : (

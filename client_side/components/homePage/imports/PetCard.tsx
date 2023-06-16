@@ -16,6 +16,7 @@ const PetCard = (props: any) => {
     const [isfav,setIsfav]=useState(false)
     const { data: session,data } = useSession()
     const [open, setOpen] = React.useState(false);  
+    const iswishlist = Router.pathname ==='Wishlist'
     const handleClick = () => {
         setOpen(true);
       };
@@ -32,7 +33,7 @@ const PetCard = (props: any) => {
         if (!isfav) {
           axios
             .post(
-              'http://localhost:8000/api/wishlists',
+              'http://127.0.0.1:8000/api/wishlists',
               { pet_id: pet.id },
               {
                 headers: {
@@ -43,6 +44,7 @@ const PetCard = (props: any) => {
               }
             )
             .then((res) => {
+              setIsfav(true)
               console.log('Added to wishlist:', res.data);
             })
             .catch((error) => {
@@ -50,13 +52,14 @@ const PetCard = (props: any) => {
             });
         } else {
           axios
-            .delete(`http://localhost:8000/api/wishlists/${pet.id}`, {
+            .delete(`http://127.0.0.1:8000//api/wishlists/${pet.id}`, {
               headers: {
                 Authorization: `Bearer ${data?.user.token}`,
               },
               withCredentials: true,
             })
             .then((res) => {
+              setIsfav(false)
               console.log('removed from wishlist', res.data);
             })
             .catch((err) => {
@@ -65,6 +68,12 @@ const PetCard = (props: any) => {
         }
       };
       
+      const removeFav = ()=>{
+        axios.delete(`http://127.0.0.1:8000/api/wishlist/${pet.id}`).then((res)=>{
+          console.log(res.data)
+          props.refresh();
+        })
+      }
 
     return (
         <div className="Pet">
@@ -92,7 +101,7 @@ const PetCard = (props: any) => {
                     </p>
                 </div>
                 <div className="Actions">
-                    {isfav && session ?(
+                    {/* {isfav && session?(
                         <FavoriteIcon onClick={handlefav} style={{color:'red'}}/>
                     ):(
                         <>
@@ -109,7 +118,13 @@ const PetCard = (props: any) => {
                             </Alert>
                         </Snackbar>
                         </>
-                    )}
+                    )} */}
+                    {props.status == true ?
+                      (<>
+                        <FavoriteIcon onClick={removeFav} style={{color:'red'}}/>
+
+                      </>) : (<></>)
+                    }
                     <RemoveRedEyeIcon
                         // onclick , redirect to pet page , and send the object pet as props
                         onClick={() => {

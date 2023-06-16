@@ -1,9 +1,8 @@
-export const ADD_USER_INFOS = "ADD_USER_INFOS";
-export const GET_USER_INFOS = "GET_USER_INFOS";
-export const DELETE_USER_INFOS = "DELETE_USER_INFOS";
+export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
+export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 
 export const addUserInfos = (userInfos: any) => ({
-    type: ADD_USER_INFOS,
+    type: REMOVE_FROM_WISHLIST,
     payload: userInfos,
 });
 

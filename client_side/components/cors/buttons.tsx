@@ -51,6 +51,7 @@ import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Link from "next/link";
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
         elevation={0}
@@ -108,6 +109,10 @@ export function UserButton(props: any) {
         setAnchorEl(null);
         props.logOut();
     };
+    const handleProfile=()=>{
+        setAnchorEl(null);
+        props.profile();
+    }
 
     return (
         <div>
@@ -140,7 +145,7 @@ export function UserButton(props: any) {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} disableRipple>
+                <MenuItem onClick={handleProfile} disableRipple>
                     <AccountCircleIcon />
                     Profile
                 </MenuItem>

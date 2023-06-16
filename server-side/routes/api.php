@@ -60,8 +60,8 @@ Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
 Route::post('like', [LikeController::class, 'like'])->middleware('auth:api');
 
 // reply routes
-Route::post('/replies', [CommentReplyController::class, 'create'])->middleware('auth:api');
-Route::get('replies/{reply}', [CommentReplyController::class, 'show'])->middleware('auth:api');
+Route::post('/replies',[CommentReplyController::class,'create'])->middleware('auth:sanctum');
+Route::get('replies/{reply}',[CommentReplyController::class,'show'])->middleware('auth:sanctum');
 
 
 Route::get('/image/{filename}', [PetController::class, 'getImage']);

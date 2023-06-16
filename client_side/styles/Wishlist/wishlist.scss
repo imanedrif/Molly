@@ -3,44 +3,50 @@
         text-align: center;
     }
     .wishlist-content{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2.5rem;
             .left{
-            display: flex;
-            flex-direction: column;
+            // display: flex;
+            // flex-direction: row;
             // align-items: flex-start;
-            align-items: center;
-            width: 50%;
-            height: 65vh;
+            // align-items: center;
+            // width: 50%;
+            // height: 65vh;
             .Wishlist-slide {
-            align-items: center;
-              border-radius: 10px;
-              padding: 1rem;
-              border: 1px solid #dddddd95;
-            margin-left: 5rem;
-              width: 60%;
-              height: 58%;
-              position: absolute;
+            // align-items: center;
+            //   border-radius: 10px;
+            //   padding: 1rem;
+            //   // border: 1px solid #dddddd95;
+            // margin-left: 5rem;
+            //   width: 60%;
+            //   height: 58%;
+            //   position: absolute;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2.5rem;
               p {
                 color: #777;
                 font-size: 16px;
                 text-align: center;
               }
               .slick-prev, .slick-next{
-                  background-color: $C2;
+                  // background-color: gray;
               }
-              div{
-                  justify-content: center;
-                  align-items: center;
-                  position: relative;
-                  .Pet{
-                      width: fit-content;
-                      img{
-                          width:fit-content;
-                      }
-                  }
-              }
+              // div{
+              //     justify-content: center;
+              //     align-items: center;
+              //     position: relative;
+              //     .Pet{
+              //         width: fit-content;
+              //         img{
+              //             width:fit-content;
+              //         }
+              //     }
+              // }
             }
           }
   

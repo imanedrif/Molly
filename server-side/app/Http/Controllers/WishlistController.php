@@ -17,6 +17,10 @@ class WishlistController extends Controller
         if ($wishlist) {
             $petIds = $wishlist->pluck('pet_id')->toArray();
             $pets = Pet::whereIn('id', $petIds)->get();
+            $petsWithImages = $pets->map(function ($pet) {
+                $pet->image = asset('api/image/' . $pet->image);
+                return $pet;
+            });
         } else {
             $pets = [];
         }

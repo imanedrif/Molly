@@ -14,7 +14,7 @@ export default class MyComponent extends React.Component {
     fetchImage = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:8000/api/image/SfLXUmOGKmhmJ3xz2jlI.jpg"
+                "http://127.0.0.1:8000/api/image/SfLXUmOGKmhmJ3xz2jlI.jpg"
             );
             const { image, mime_type: mimeType } = response.data;
             this.setState({ image, mimeType });
