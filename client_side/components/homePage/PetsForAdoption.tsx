@@ -8,7 +8,7 @@ const PetsForAdoption = () => {
     const [pets, setPets] = useState([]);
     useEffect(() => {
         axios
-            .get('http://127.0.0.1:8000/api/pets', {
+            .get('http://localhost:8000/api/pets', {
                 headers: {
                     "Content-Type": "application/json",
                     "X-Requested-With": "XMLHttpRequest",

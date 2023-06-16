@@ -71,7 +71,7 @@ const AddAnnounce: NextPage = () => {
         let formData: any = new FormData()
         formData = petdata;
         axios
-            .post("http://127.0.0.1:8000/api/pets", formData,
+            .post("http://localhost:8000/api/pets", formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
