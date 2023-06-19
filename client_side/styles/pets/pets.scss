@@ -76,6 +76,12 @@
                         }
                     }
                 }
+                button{
+                    z-index: 0;
+                    margin-top:inherit;
+                    width: 30%;
+                    align-self: center;
+                }
             }
             .right{
                 display: flex;
@@ -120,5 +126,10 @@
         }
     }
 }
-
+@include respond-to("medium") {
+        .Pets {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+}
 @import './petsdetails.scss'

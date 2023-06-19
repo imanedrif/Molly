@@ -10,6 +10,13 @@ import Footer from "@/components/cors/Footer";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
+
 
 const Wishlist = () => {
     const [isInList,setIsInList] = useState(true)
@@ -43,21 +50,21 @@ const Wishlist = () => {
             router.push('/Login')
         }
     },[isRefresh])
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-    };
-
     return (
         <div className="wishlist">
             <Header />
             <h1>Wishlist</h1>
             <div className="wishlist-content">
-                    <div className="Wishlist-slide">
+                <Swiper
+                   slidesPerView={2}
+                   spaceBetween={30}
+                   pagination={{
+                     clickable: true,
+                   }}
+                   modules={[Pagination]}
+                   className="mySwiper"
+                >
+                    <SwiperSlide>
                     {pets.map((pet: any, index: any) => {
                     return (
                         <div>
@@ -65,7 +72,8 @@ const Wishlist = () => {
                         </div>
                     );
                     })}
-                    </div>
+                    </SwiperSlide>
+                </Swiper>
             </div>
             <Footer />
         </div>

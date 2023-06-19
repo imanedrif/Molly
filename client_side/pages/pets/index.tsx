@@ -2,24 +2,29 @@ import Footer from "@/components/cors/footer";
 import Header from "@/components/cors/Header";
 import PetCard from "@/components/homePage/imports/PetCard";
 import { Card, Checkbox, Grid } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PaginationComponent from "@/components/pets/PaginationComponent";
 import axios from "axios";
+import { Button } from "@nextui-org/react";
 
 const Index = () => {
     const label = { inputProps: { "aria-label": "Checkbox demo" } };
     const { cities } = require("morocco-cities");
-    const [pets, setPets] = React.useState([] as any);
-    const ages = [
-        { text: "Age : 1 yo " },
-        { text: "Age : 2 yo  " },
-        { text: "Age : 6 months" },
-        { text: "Age : less than  1 yo " },
-        { text: "Age : less than  2 yo " },
-        { text: "Age : less than 6 months" },
-        { text: "Other" },
+    const category = [
+        { value: "dog" },
+        { value: "cat" },
+        { value: "bird" },
+        { value: "rabbit" },
+        { value: "hamster" },
     ];
-
+    const [pets, setPets] = React.useState([] as any);
+    const [selectedCategory,setSelectedCategory] = useState('')
+    const [selectedGender,setSelectedGender] = useState('')
+    const [filteredPet,setFilteredpet]=useState([]as any)
+    const handleClearFilter = () => {
+        setSelectedCategory("");
+        setSelectedGender("");
+    };
     useEffect(() => {
         axios
             .get("http://127.0.0.1:8000/api/pets", {
@@ -37,13 +42,23 @@ const Index = () => {
             });
         // console.log(pets)
     }, []);
-    const category = [
-        { value: "dog" },
-        { value: "cat" },
-        { value: "bird" },
-        { value: "rabbit" },
-        { value: "hamster" },
-    ];
+
+    useEffect(()=>{
+        const filterPets = ()=>{
+            let filtered = pets
+            if (selectedCategory) {
+                filtered = filtered.filter((pet: any) => pet.category === selectedCategory);
+            }
+
+            if (selectedGender) {
+                filtered = filtered.filter((pet: any) => pet.gender === selectedGender);
+            }
+
+            setFilteredpet(filtered);
+        }
+        filterPets();
+    },[pets, selectedCategory, selectedGender])
+
     return (
         <>
             <Header />
@@ -65,7 +80,7 @@ const Index = () => {
                                     {category.map((i, index: any) => (
                                         <Grid item xs={4} key={index}>
                                             <div className="items">
-                                                <Checkbox />
+                                                <Checkbox value={i.value} checked={selectedCategory === i.value} onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
                                                 <p>{i.value}</p>
                                             </div>
                                         </Grid>
@@ -80,35 +95,22 @@ const Index = () => {
                                 <Grid container className="checkboxContainer">
                                     <Grid item xs={4}>
                                         <div className="items">
-                                            <Checkbox />
+                                            <Checkbox value='female' checked ={selectedGender ==='female'} onChange={(e)=>{setSelectedGender(e.target.value)}}/>
                                             <p>Female</p>
-                                            <Checkbox />
+                                            <Checkbox value='male' checked={selectedGender ==='male'} onChange={(e)=>{setSelectedGender(e.target.value)}}/>
                                             <p>Male</p>
                                         </div>
                                     </Grid>
                                 </Grid>
                             </div>
-                            <div className="age">
-                                <div className="title">
-                                    <p>Age</p>
-                                    <hr />
-                                </div>
-                                <Grid container className="checkboxContainer">
-                                    {ages.map((age, index: any) => (
-                                        <Grid item xs={4} key={index}>
-                                            <div className="items">
-                                                <Checkbox />
-                                                <p>{age.text}</p>
-                                            </div>
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </div>
+                            <Button shadow color="warning" size='xs' onClick={handleClearFilter}>
+                                 Clear
+                            </Button>
                         </Grid>
                         <Grid xs={9} className="right">
                             <h2>Discover available pets</h2>
                             <div>
-                                <PaginationComponent data={pets} />
+                                <PaginationComponent data={filteredPet.length > 0 ? filteredPet : pets}  />
                             </div>
                         </Grid>
                     </Grid>
