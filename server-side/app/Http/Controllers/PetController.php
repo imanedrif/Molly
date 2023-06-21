@@ -26,6 +26,18 @@ class PetController extends Controller
 
         return response()->json(['data' => $petsWithImages], 200);
     }
+    public function userPets()
+{
+    $user = Auth::user();
+    $pets = $user->pets;
+
+    $petsWithImages = $pets->map(function ($pet) {
+        $pet->image = asset('api/image/' . $pet->image);
+        return $pet;
+    });
+
+    return response()->json(['data' => $petsWithImages], 200);
+}
 
     public function getImage($filename)
     {

@@ -81,7 +81,7 @@ const PetCard = (props: any) => {
 
   return (
     <>
-    <Card className="Pet" css={{ mw: "270px"}}>
+    <Card className="Pet" css={{ mw: "270px",minWidth:"135px",m:"0"}}>
       <Card.Header css={{w:"100%"}}>
         <Image
           loader={() => props.pet.image}
