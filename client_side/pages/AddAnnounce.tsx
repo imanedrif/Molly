@@ -40,7 +40,7 @@ const AddAnnounce: NextPage = () => {
         description: "",
         image: "",
     });
-    
+
     const handleImage = (e: any) => {
         setPetdata({ ...petdata, image: e.target.files[0] });
     };
@@ -139,6 +139,7 @@ const AddAnnounce: NextPage = () => {
                                         <p>Category</p>
                                         <TextField
                                             name="category"
+                                            defaultValue="dog"
                                             value={petdata.category}
                                             onChange={handleInput}
                                             select
@@ -161,6 +162,7 @@ const AddAnnounce: NextPage = () => {
                                         <TextField
                                             name="city"
                                             value={petdata.city}
+                                            defaultValue="Afourar"
                                             onChange={handleInput}
                                             select
                                             SelectProps={{
@@ -185,12 +187,15 @@ const AddAnnounce: NextPage = () => {
                                             name="gender"
                                             value={petdata.gender}
                                             onChange={handleInput}
+                                            defaultValue="male"
                                             select
                                             SelectProps={{
                                                 native: true,
                                             }}
                                         >
-                                            <option value="male">male</option>
+                                            <option value="male">
+                                                male
+                                            </option>
                                             <option value="female">
                                                 female
                                             </option>

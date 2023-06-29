@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
 
         $input = $request->all();
-
+        // return response()->json($input, 200);
         $validation = Validator::make($input, [
             'name' => 'required',
             'email' => 'required|email',

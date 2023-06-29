@@ -4,6 +4,7 @@ import { SecondaryButton } from "../cors/buttons";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+
 const PetsForAdoption = () => {
     const [pets, setPets] = useState([]);
     useEffect(() => {

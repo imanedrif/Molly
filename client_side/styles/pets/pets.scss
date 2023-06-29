@@ -76,6 +76,12 @@
                         }
                     }
                 }
+                button{
+                    z-index: 0;
+                    margin-top:inherit;
+                    width: 30%;
+                    align-self: center;
+                }
             }
             .right{
                 display: flex;
@@ -86,6 +92,16 @@
                     flex-direction: row;
                 }
             }
+            .top{
+                border-bottom: 1px solid  rgba(230, 230, 230, 1);
+            }
+            .buttom{
+                margin: 0;
+            }
+        }
+        .desktop{
+            display: flex;
+            flex-direction: column;
         }
     }
     .css-ckb4zc-MuiGrid-root{
@@ -95,30 +111,40 @@
         flex-direction: column;
         gap: 1rem;
 
-.PagnationContainer{
-    // background-color: black;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-        ul{
-            display:flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            li{
-                display: none;
-
-            }
-            .previous,.next{
-                display: block;
-                cursor: pointer;
-            }
-            .disabled{
-                opacity: 0.4;
+        .PagnationContainer{
+            // background-color: black;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            ul{
+                display:flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                li{
+                    display: none;
+    
+                }
+                .previous,.next{
+                    display: block;
+                    cursor: pointer;
+                }
+                .disabled{
+                    opacity: 0.4;
+                }
             }
         }
     }
 }
-
+@include respond-to("medium") {
+        .Pets {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1rem;
+        }
+        // .pets .css-ckb4zc-MuiGrid-root .PagnationContainer{
+        //     align-items: center;
+        //     width: fit-content; 
+        // }
+}
 @import './petsdetails.scss'

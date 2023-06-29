@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <SessionProvider session={pageProps.session}
             // basePath="cool-app"
             // Re-fetch session every 5 minutes
-            refetchInterval={5 * 60}
+            refetchInterval={5 * 60 * 60 * 60}
             // Disable Re-fetches session when window is focused
             refetchOnWindowFocus={false}
         >

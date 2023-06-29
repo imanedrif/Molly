@@ -28,7 +28,12 @@
             img{
                 border-radius: 20px;
                 width: 45%;
-                height: 45%;
+                height: 50%;
+            }
+            .actions{
+                display: flex;
+                flex-direction: row;
+                gap: 2rem;
             }
             .details{
                 display: flex;

@@ -26,6 +26,18 @@ class PetController extends Controller
 
         return response()->json(['data' => $petsWithImages], 200);
     }
+    public function userPets()
+    {
+        $user = Auth::user();
+        $pets = $user->pets;
+
+        $petsWithImages = $pets->map(function ($pet) {
+            $pet->image = asset('api/image/' . $pet->image);
+            return $pet;
+        });
+
+        return response()->json(['data' => $petsWithImages], 200);
+    }
 
     public function getImage($filename)
     {
@@ -99,37 +111,11 @@ class PetController extends Controller
             ], 403);
         }
 
-        $validation = $request->validate([
-            'title',
-            'name' => 'required',
-            'category' => 'required',
-            'city' => 'required',
-            'age' => 'required',
-            'gender' => 'required',
-            'description',
-            'image' => 'sometimes|image|mimes:jpeg,jpg,png,svg',
-            'statuts'
-        ]);
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = Str::random(20) . "." . $image->getClientOriginalExtension();
-            $path = $image->storeAs('images/' . $imageName);
-            $pet->image = $imageName;
-        }
-
-        $pet->name = $validation['name'];
-        $pet->gendre = $validation['gendre'];
-        $pet->category = $validation['category'];
-        $pet->age = $validation['age'];
-        $pet->city = $validation['city'];
-        $pet->description = $validation['description'];
-        $pet->title = $validation['title'];
-        $pet->statuts = $validation['statuts'];
-        $pet->save();
-
+        $pet->update($request->all());
+        // return response()->json($request->all(), 200);
         return response()->json([
-            'message' => 'Pet updated successfully.'
+            'message' => 'Pet updated successfully.',
+            'data' => $pet,
         ], 200);
     }
     public function destroy($id)
@@ -137,13 +123,7 @@ class PetController extends Controller
         $user = Auth::user();
         $pet = Pet::find($id);
 
-        if (!$pet) {
-            return response()->json([
-                'message' => 'Pet not found.'
-            ], 404);
-        }
-
-        if ($pet->user_id !== $user->id) {
+        if ($pet->user_id != $user->id) {
             return response()->json([
                 'message' => 'You are not authorized to delete this pet.'
             ], 403);

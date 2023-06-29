@@ -37,9 +37,10 @@ Route::post('logout', [AuthController::class, 'Logout']);
 // pet routes
 Route::post('pets', [PetController::class, 'store'])->middleware('auth:api');
 Route::get('pets', [PetController::class, 'index']);
+Route::get('user-pets', [PetController::class, 'userPets'])->middleware('auth:api');
 Route::get('pets/{id}', [PetController::class, 'show']);
 Route::patch('pets/{id}', [PetController::class, 'update'])->middleware('auth:api');
-Route::delete('pets/{id}', [PetController::class, 'destroy'])->middleware('auth:api');
+Route::delete('pets/{pet}', [PetController::class, 'destroy'])->middleware('auth:api');
 
 // wishlist routes
 Route::get('wishlists', [WishlistController::class, 'index'])->middleware('auth:api');

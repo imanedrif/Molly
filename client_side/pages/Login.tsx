@@ -57,6 +57,10 @@ const Login = () => {
 
         }
     };
+    useEffect(() => {
+        router.prefetch('/register')
+        router.prefetch('/pets')
+    }, [])
     return (
         <div className="login">
             <div className="Shape1"></div>

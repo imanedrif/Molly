@@ -37,9 +37,11 @@
     "slick-carousel": "^1.8.1",
     "swal": "^0.1.0",
     "sweetalert2": "^11.7.8",
+    "swiper": "^9.4.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/react-slick": "^0.23.10"
+    "@types/react-slick": "^0.23.10",
+    "@types/swiper": "^6.0.0"
   }
 }

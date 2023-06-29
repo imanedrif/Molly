@@ -7,8 +7,9 @@ import axios from "axios";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { BorderAllOutlined } from "@mui/icons-material";
 import { useSession } from "next-auth/react";
-import { Checkbox } from "@mui/material";
-// import snth from '../../../../server-side/storage/app/public/'
+import { Alert, Checkbox, Slide, Snackbar } from "@mui/material";
+import { Card, Col, Row, Text } from "@nextui-org/react";
+
 const PetCard = (props: any) => {
   const { pet } = props;
   console.log(props);
@@ -16,10 +17,9 @@ const PetCard = (props: any) => {
   const [isfav, setIsfav] = useState(false)
   const { data: session, data } = useSession()
   const [open, setOpen] = React.useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false)
   const iswishlist = Router.pathname === 'Wishlist'
-  const handleClick = () => {
-    setOpen(true);
-  };
+
   useEffect(() => {
     if (session) {
       axios
@@ -43,6 +43,14 @@ const PetCard = (props: any) => {
         })
     }
   }, [])
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   const removeFav = () => {
     axios.delete(`http://127.0.0.1:8000/api/wishlists/${pet.id}`, {
@@ -72,36 +80,42 @@ const PetCard = (props: any) => {
   }
 
   return (
-    <div className="Pet">
-      <Image
-        loader={() => props.pet.image}
-        src={props.pet.image}
-        width={100}
-        height={100}
-        alt="pets image"
-      >
-        <div>
-          <p className="Name">{pet?.name}</p>
-          <div className="Infos">
-            <div className="Row">
-              <p className="Info">
-                Genre : <span>{pet?.gender}</span>
-              </p>
-              <p className="Info">
-                Age : <span>{pet?.age}</span>
-              </p>
-              <br />
-            </div>
-            <p className="Info">
-              City : <span className="C3">{pet?.city}</span>
-            </p>
-          </div>
-          <div className="Actions">
-            <Checkbox
-              icon={<FavoriteBorderIcon style={{ color: 'red' }} />}
-              checkedIcon={<FavoriteIcon style={{ color: 'red' }} />}
-              checked={isfav}
-              onClick={() => {
+    <>
+      <Card className="Pet" css={{ mw: "270px", minWidth: "135px", m: "0" }}>
+        <Card.Header css={{ w: "100%" }}>
+          <Image
+            loader={() => props.pet.image}
+            src={props.pet.image}
+            width={100}
+            height={100}
+            alt="pets image"
+          />
+        </Card.Header>
+        <Card.Body css={{ p: 0, gap: "$3", paddingLeft: "$5", w: "100%" }}>
+          <Text h4 css={{ lineHeight: "$xs", fontWeight: "$semibold" }}>{pet?.name}</Text>
+          <Row justify="flex-start" css={{ gap: "$5", mw: "100%", fontSize: "$sm", whiteSpace: "nowrap" }}>
+            <Text>
+              Genre : <span>{pet?.gender}</span>
+            </Text>
+            <Text>
+              Age : <span>{pet?.age}</span>
+            </Text>
+            <br />
+          </Row>
+          <Text>
+            City : <span className="C3">{pet?.city}</span>
+          </Text>
+        </Card.Body>
+        <Card.Footer css={{ p: 0 }}>
+          <Checkbox
+            icon={<FavoriteBorderIcon style={{ color: 'black' }} />}
+            checkedIcon={<FavoriteIcon style={{ color: 'red' }} />}
+            checked={isfav}
+            onClick={() => {
+              if (!session) {
+                setShowSnackbar(true)
+                setOpen(true)
+              } else {
                 if (isfav) {
                   setIsfav(false)
                   removeFav()
@@ -110,17 +124,31 @@ const PetCard = (props: any) => {
                   setIsfav(true)
                   addFav()
                 }
-              }}
-            />
-            <RemoveRedEyeIcon
-              onClick={() => {
-                console.log("clicked");
-                Router.push(`/pets/${pet.id}`);
-              }}
-            />
-          </div>
-        </div>
-    </div>
+              }
+            }}
+          />
+          <RemoveRedEyeIcon
+            onClick={() => {
+              console.log("clicked");
+              Router.push(`/pets/${pet.id}`);
+            }}
+          />
+        </Card.Footer>
+      </Card>
+      {showSnackbar && (
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          TransitionComponent={(props) => <Slide {...props} direction="right" />}
+          transitionDuration={600}
+        >
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            You must be connected !
+          </Alert>
+        </Snackbar>
+      )}
+    </>
   );
 };
 
