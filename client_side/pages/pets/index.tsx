@@ -127,7 +127,7 @@ const Index = () => {
                                     filteredPet.length > 0 ? (
                                         <PaginationComponent data={filteredPet.length > 0 ? filteredPet : pets} />
                                     ) : (
-                                        <h2>No Pets Are available , <Link href="/addAnnounce.tsx">Add One</Link></h2>
+                                        <h2>No Pets Are available , <Link href="/AddAnnounce">Add One</Link></h2>
                                     )
 
                                 }
