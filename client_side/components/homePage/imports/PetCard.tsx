@@ -29,7 +29,7 @@ const PetCard = (props: any) => {
             "Authorization": `Bearer ${data?.user.token}`,
           },
         })
-        .then((res) => {
+        .then((res: any) => {
           console.log("Wishlist Res", res)
           if (res.status = 200) {
             setIsfav(true)
@@ -38,69 +38,21 @@ const PetCard = (props: any) => {
             setIsfav(false)
           }
         })
-        .catch((err) => {
+        .catch((err: any) => {
           console.log(err)
         })
     }
   }, [])
-  // const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
-
-
-  // const handlefav = () => {
-  //   setIsfav((prevIsfav) => !prevIsfav);
-  //   if (!isfav) {
-  //     axios
-  //       .post(
-  //         'http://127.0.0.1:8000/api/wishlists',
-  //         { pet_id: pet.id },
-  //         {
-  //           headers: {
-  //             Accept: 'application/json',
-  //             Authorization: `Bearer ${data?.user.token}`,
-  //           },
-  //           withCredentials: true,
-  //         }
-  //       )
-  //       .then((res) => {
-  //         setIsfav(true)
-  //         console.log('Added to wishlist:', res.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Failed to add to wishlist:', error);
-  //       });
-  //   } else {
-  //     axios
-  //       .delete(`http://127.0.0.1:8000//api/wishlists/${pet.id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${data?.user.token}`,
-  //         },
-  //         withCredentials: true,
-  //       })
-  //       .then((res) => {
-  //         setIsfav(false)
-  //         console.log('removed from wishlist', res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.error('Failed to remove from wishlist', err);
-  //       });
-  //   }
-  // };
 
   const removeFav = () => {
     axios.delete(`http://127.0.0.1:8000/api/wishlists/${pet.id}`, {
       headers: {
         "Authorization": `Bearer ${data?.user.token}`,
       },
-    }).then((res) => {
+    }).then((res: any) => {
       console.log(res.data)
       setIsfav(false)
-    }).catch((err) => {
+    }).catch((err: any) => {
       console.log(err)
     })
   }
@@ -109,11 +61,11 @@ const PetCard = (props: any) => {
       headers: {
         Authorization: `Bearer ${data?.user.token}`,
       },
-    }).then((res) => {
+    }).then((res: any) => {
       console.log(res.data)
       setIsfav(true)
     }
-    ).catch((err) => {
+    ).catch((err: any) => {
       console.log(err)
     }
     )
@@ -127,68 +79,47 @@ const PetCard = (props: any) => {
         width={100}
         height={100}
         alt="pets image"
-      />
-      <div>
-        <p className="Name">{pet?.name}</p>
-        <div className="Infos">
-          <div className="Row">
+      >
+        <div>
+          <p className="Name">{pet?.name}</p>
+          <div className="Infos">
+            <div className="Row">
+              <p className="Info">
+                Genre : <span>{pet?.gender}</span>
+              </p>
+              <p className="Info">
+                Age : <span>{pet?.age}</span>
+              </p>
+              <br />
+            </div>
             <p className="Info">
-              Genre : <span>{pet?.gender}</span>
+              City : <span className="C3">{pet?.city}</span>
             </p>
-            <p className="Info">
-              Age : <span>{pet?.age}</span>
-            </p>
-            <br />
           </div>
-          <p className="Info">
-            City : <span className="C3">{pet?.city}</span>
-          </p>
+          <div className="Actions">
+            <Checkbox
+              icon={<FavoriteBorderIcon style={{ color: 'red' }} />}
+              checkedIcon={<FavoriteIcon style={{ color: 'red' }} />}
+              checked={isfav}
+              onClick={() => {
+                if (isfav) {
+                  setIsfav(false)
+                  removeFav()
+                }
+                else {
+                  setIsfav(true)
+                  addFav()
+                }
+              }}
+            />
+            <RemoveRedEyeIcon
+              onClick={() => {
+                console.log("clicked");
+                Router.push(`/pets/${pet.id}`);
+              }}
+            />
+          </div>
         </div>
-        <div className="Actions">
-          {/* {isfav && session ? (
-            <FavoriteIcon onClick={handlefav} style={{ color: 'red' }} />
-          ) : (
-            <>
-              <FavoriteBorderIcon onClick={() => { handlefav(); handleClick(); }} />
-              <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                TransitionComponent={(props) => <Slide {...props} direction="right" />}
-                transitionDuration={600}
-              >
-                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                  You must be connected !
-                </Alert>
-              </Snackbar>
-            </>
-          )} */}
-          {/* {
-            isfav ? <FavoriteIcon onClick={removeFav} style={{ color: 'red' }} /> : <FavoriteBorderIcon onClick={addFav} />
-          } */}
-          <Checkbox
-            icon={<FavoriteBorderIcon style={{ color: 'red' }} />}
-            checkedIcon={<FavoriteIcon style={{ color: 'red' }} />}
-            checked={isfav}
-            onClick={() => {
-              if (isfav) {
-                setIsfav(false)
-                removeFav()
-              }
-              else {
-                setIsfav(true)
-                addFav()
-              }
-            }}
-          />
-          <RemoveRedEyeIcon
-            onClick={() => {
-              console.log("clicked");
-              Router.push(`/pets/${pet.id}`);
-            }}
-          />
-        </div>
-      </div>
     </div>
   );
 };

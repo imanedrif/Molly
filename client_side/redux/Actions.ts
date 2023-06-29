@@ -7,9 +7,9 @@ export const addUserInfos = (userInfos: any) => ({
 });
 
 export const getUserInfos = () => ({
-    type: GET_USER_INFOS,
+    type: getUserInfos,
 });
 
 export const deleteUserInfos = () => ({
-    type: DELETE_USER_INFOS,
+    type: deleteUserInfos,
 });
